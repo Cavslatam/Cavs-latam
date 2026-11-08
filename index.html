@@ -1,325 +1,341 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAVS LATAM | Cleveland Cavaliers</title>
-<meta name="description" content="Noticias, estadísticas, partidos e historia de Cleveland Cavaliers en español, portugués e inglés.">
-<style>
-:root {
-  --wine: #6f1735;
-  --wine-dark: #280b18;
-  --gold: #f2b632;
-  --bg: #090b10;
-  --panel: #141821;
-  --muted: #a5adbb;
-  --white: #f7f8fa;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
-}
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(9,11,16,.96);
-  border-bottom: 1px solid #292d37;
-  backdrop-filter: blur(12px);
-}
-.topbar {
-  max-width: 1200px;
-  margin: auto;
-  padding: 17px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-.brand {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-.brand span { color: var(--gold); }
-.language {
-  background: #1b202b;
-  color: white;
-  border: 1px solid #3a414e;
-  padding: 9px 12px;
-  border-radius: 6px;
-}
-nav {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 18px 13px;
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-}
-nav a {
-  color: #d8dce4;
-  text-decoration: none;
-  white-space: nowrap;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 9px 12px;
-  border-radius: 5px;
-}
-nav a:hover { background: var(--wine); color: white; }
-.hero {
-  min-height: 420px;
-  padding: 75px 22px;
-  background:
-    radial-gradient(ellipse at 85% 20%, rgba(242,182,50,.18), transparent 35%),
-    linear-gradient(110deg, #270b18 0%, #50152c 48%, #11151e 100%);
-  border-bottom: 3px solid var(--gold);
-}
-.hero-inner {
-  max-width: 1150px;
-  margin: auto;
-}
-.eyebrow {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-.hero h1 {
-  font-size: clamp(42px, 8vw, 78px);
-  line-height: .98;
-  margin: 18px 0;
-  font-weight: 900;
-  max-width: 750px;
-}
-.hero h1 span { color: var(--gold); }
-.hero p {
-  max-width: 590px;
-  color: #e0dce1;
-  font-size: 17px;
-  line-height: 1.7;
-}
-.hero-button {
-  display: inline-block;
-  margin-top: 15px;
-  background: var(--gold);
-  color: #17120a;
-  text-decoration: none;
-  padding: 14px 20px;
-  border-radius: 5px;
-  font-weight: 900;
-  font-size: 13px;
-}
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 35px 22px 70px;
-}
-.section { padding: 25px 0 38px; }
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-.section-heading:before {
-  content: "";
-  width: 5px;
-  height: 30px;
-  background: var(--gold);
-}
-h2 {
-  margin: 0;
-  font-size: 25px;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-}
-.intro {
-  color: var(--muted);
-  line-height: 1.7;
-  margin: -8px 0 22px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid #282e39;
-  border-radius: 9px;
-  padding: 23px;
-  min-height: 155px;
-  transition: .2s;
-}
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold);
-}
-.card .number {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-.card h3 { margin: 13px 0 9px; font-size: 19px; }
-.card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
-.feature {
-  background: linear-gradient(120deg, #421329, #171b25);
-  border: 1px solid #65304a;
-  border-radius: 10px;
-  padding: 28px;
-}
-.feature p { color: #d6d0d6; line-height: 1.7; }
-.tag {
-  display: inline-block;
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-.placeholder {
-  border: 1px dashed #454b58;
-  color: var(--muted);
-  padding: 25px;
-  border-radius: 8px;
-  line-height: 1.7;
-  background: #10141c;
-}
-footer {
-  border-top: 1px solid #292d37;
-  padding: 28px 20px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-}
-footer strong { color: var(--gold); }
-@media(max-width: 760px) {
-  .grid { grid-template-columns: 1fr; }
-  .hero { min-height: 370px; padding: 60px 22px; }
-  .topbar { padding: 14px 16px; }
-  .brand { font-size: 19px; }
-  main { padding-left: 16px; padding-right: 16px; }
-  h2 { font-size: 21px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAVS LATAM | Cleveland Cavaliers</title>
+  <meta name="description" content="CAVS LATAM: noticias, estadísticas, partidos e historia de Cleveland Cavaliers en español.">
+  <style>
+    :root {
+      --wine: #860038;
+      --gold: #ffb81c;
+      --bg: #101014;
+      --panel: #1b1b22;
+      --text: #f5f5f5;
+      --muted: #aaaab4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: #15151b;
+      border-bottom: 3px solid var(--gold);
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand span { color: var(--gold); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    select, .x-button {
+      padding: 10px 13px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #24242c;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .x-button {
+      background: var(--wine);
+      border-color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 13px;
+      background: #202027;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background: var(--wine);
+      color: var(--gold);
+    }
+
+    .hero {
+      min-height: 350px;
+      padding: 75px 8%;
+      text-align: center;
+      background:
+        linear-gradient(90deg, rgba(20,0,10,.94), rgba(20,20,25,.82)),
+        linear-gradient(135deg, #860038, #222 65%);
+      border-bottom: 1px solid #333;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 65px);
+      margin: 0 0 15px;
+      font-weight: 900;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      color: #ddd;
+      font-size: 18px;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 55px 22px;
+      scroll-margin-top: 20px;
+    }
+
+    .section h2 {
+      font-size: 29px;
+      border-left: 5px solid var(--gold);
+      padding-left: 14px;
+      margin-bottom: 25px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid #33333d;
+      border-radius: 9px;
+      padding: 23px;
+      min-height: 155px;
+    }
+
+    .card h3 {
+      color: var(--gold);
+      margin-top: 0;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .content-area {
+      background: var(--panel);
+      border: 1px solid #33333d;
+      border-radius: 9px;
+      padding: 25px;
+      color: var(--muted);
+      line-height: 1.8;
+      min-height: 120px;
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid #303039;
+      max-width: 1100px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      background: #15151b;
+      border-top: 3px solid var(--gold);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      header { justify-content: center; text-align: center; }
+      .brand { width: 100%; }
+      nav { gap: 2px; }
+      nav a { padding: 9px 8px; font-size: 12px; }
+      .hero { padding: 60px 20px; }
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <div class="topbar">
-    <div class="brand">CAVS <span>LATAM</span></div>
-    <select class="language" id="language" aria-label="Seleccionar idioma">
-      <option value="es">ESPAÑOL</option>
-      <option value="pt">PORTUGUÊS</option>
-      <option value="en">ENGLISH</option>
+  <div class="brand">CAVS <span>LATAM</span></div>
+
+  <div class="header-actions">
+    <select id="language" onchange="changeLanguage()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="pt">🇧🇷 Português</option>
+      <option value="en">🇺🇸 English</option>
     </select>
+
+    <a class="x-button"
+       href="https://x.com/cavs_latamm"
+       target="_blank"
+       rel="noopener noreferrer">𝕏 SEGUIR</a>
   </div>
-  <nav>
-    <a href="#inicio" data-i18n="navHome">INICIO</a>
-    <a href="#plantilla" data-i18n="navRoster">PLANTILLA</a>
-    <a href="#estadisticas" data-i18n="navStats">ESTADÍSTICAS</a>
-    <a href="#partidos" data-i18n="navGames">PARTIDOS</a>
-    <a href="#historia" data-i18n="navHistory">HISTORIA</a>
-    <a href="#noticias" data-i18n="navNews">NOTICIAS</a>
-  </nav>
 </header>
 
-<section class="hero" id="inicio">
-  <div class="hero-inner">
-    <div class="eyebrow">THE CAVALIERS COMMUNITY</div>
-    <h1>CLEVELAND<br><span>CAVALIERS</span></h1>
-    <p data-i18n="heroText">
-      Toda la pasión de los Cavaliers en un solo lugar. Noticias, análisis,
-      estadísticas, partidos e historia para los aficionados de Latinoamérica.
-    </p>
-    <a class="hero-button" href="#noticias" data-i18n="heroButton">EXPLORAR CAVS LATAM</a>
-  </div>
-</section>
+<nav>
+  <a href="#inicio" data-i18n="navHome">INICIO</a>
+  <a href="#plantilla" data-i18n="navRoster">PLANTILLA</a>
+  <a href="#estadisticas" data-i18n="navStats">ESTADÍSTICAS</a>
+  <a href="#partidos" data-i18n="navGames">PARTIDOS</a>
+  <a href="#historia" data-i18n="navHistory">HISTORIA</a>
+  <a href="#noticias" data-i18n="navNews">NOTICIAS</a>
+</nav>
 
 <main>
+  <section class="hero" id="inicio">
+    <h1>CLEVELAND <span>CAVALIERS</span></h1>
+    <p data-i18n="heroText">
+      La pasión de los Cavaliers en Latinoamérica. Noticias, análisis,
+      estadísticas, partidos e historia de la franquicia.
+    </p>
+  </section>
+
   <section class="section">
-    <div class="section-heading"><h2 data-i18n="featured">DESTACADO</h2></div>
-    <div class="feature">
-      <span class="tag">CAVS LATAM</span>
-      <h3 data-i18n="welcomeTitle">La casa de los Cavaliers en Latinoamérica</h3>
-      <p data-i18n="welcomeText">
-        Un espacio dedicado a seguir al equipo, conocer a sus jugadores,
-        revisar sus números y analizar cada momento de la temporada.
-        Estamos preparando cada sección para ofrecer información completa.
-      </p>
+    <h2 data-i18n="welcomeTitle">BIENVENIDOS A CAVS LATAM</h2>
+    <p class="section-intro" data-i18n="welcomeText">
+      Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers.
+      Un sitio creado por aficionados para aficionados.
+    </p>
+
+    <div class="cards">
+      <article class="card">
+        <h3 data-i18n="cardRoster">Plantilla</h3>
+        <p data-i18n="cardRosterText">Conoce a los jugadores, sus perfiles y sus estadísticas.</p>
+      </article>
+
+      <article class="card">
+        <h3 data-i18n="cardStats">Estadísticas</h3>
+        <p data-i18n="cardStatsText">Datos individuales, colectivos y análisis del equipo.</p>
+      </article>
+
+      <article class="card">
+        <h3 data-i18n="cardGames">Partidos</h3>
+        <p data-i18n="cardGamesText">Calendario, resultados y análisis de cada encuentro.</p>
+      </article>
+
+      <article class="card">
+        <h3 data-i18n="cardNews">Noticias</h3>
+        <p data-i18n="cardNewsText">Actualidad, opiniones y análisis de los Cavaliers.</p>
+      </article>
     </div>
   </section>
+
+  <hr class="divider">
 
   <section class="section" id="plantilla">
-    <div class="section-heading"><h2 data-i18n="rosterTitle">PLANTILLA</h2></div>
-    <p class="intro" data-i18n="rosterIntro">Conoce a cada jugador de Cleveland: perfil, posición, trayectoria y estadísticas individuales.</p>
-    <div class="placeholder" data-i18n="rosterPlaceholder">
-      Próximamente: fichas individuales de los jugadores, con biografía,
-      número, posición, trayectoria y rendimiento.
+    <h2 data-i18n="rosterTitle">PLANTILLA</h2>
+    <p class="section-intro" data-i18n="rosterIntro">
+      Información detallada de cada jugador de Cleveland Cavaliers.
+    </p>
+    <div class="content-area" data-i18n="rosterPlaceholder">
+      Aquí agregaremos los perfiles individuales: biografía, posición,
+      número, trayectoria y estadísticas de cada jugador.
     </div>
   </section>
+
+  <hr class="divider">
 
   <section class="section" id="estadisticas">
-    <div class="section-heading"><h2 data-i18n="statsTitle">ESTADÍSTICAS</h2></div>
-    <p class="intro" data-i18n="statsIntro">Números del equipo y de cada jugador, explicados con detalle.</p>
-    <div class="grid">
-      <article class="card">
-        <div class="number">01</div>
-        <h3 data-i18n="statsCard1">Estadísticas individuales</h3>
-        <p data-i18n="statsCard1Text">Puntos, rebotes, asistencias, robos, tapones y porcentajes.</p>
-      </article>
-      <article class="card">
-        <div class="number">02</div>
-        <h3 data-i18n="statsCard2">Estadísticas del equipo</h3>
-        <p data-i18n="statsCard2Text">Rendimiento colectivo, ataque, defensa y tendencias.</p>
-      </article>
-      <article class="card">
-        <div class="number">03</div>
-        <h3 data-i18n="statsCard3">Análisis y comparaciones</h3>
-        <p data-i18n="statsCard3Text">Comparaciones entre jugadores y evolución durante la temporada.</p>
-      </article>
+    <h2 data-i18n="statsTitle">ESTADÍSTICAS</h2>
+    <p class="section-intro" data-i18n="statsIntro">
+      Datos y rendimiento individual y colectivo de Cleveland.
+    </p>
+    <div class="content-area" data-i18n="statsPlaceholder">
+      Aquí agregaremos puntos, rebotes, asistencias, porcentajes,
+      comparaciones, estadísticas por partido y análisis.
     </div>
   </section>
+
+  <hr class="divider">
 
   <section class="section" id="partidos">
-    <div class="section-heading"><h2 data-i18n="gamesTitle">PARTIDOS</h2></div>
-    <p class="intro" data-i18n="gamesIntro">Calendario, resultados y análisis de cada encuentro de Cleveland.</p>
-    <div class="placeholder" data-i18n="gamesPlaceholder">
-      Aquí publicaremos próximos partidos, resultados finales,
-      resúmenes y análisis detallados de cada encuentro.
+    <h2 data-i18n="gamesTitle">PARTIDOS</h2>
+    <p class="section-intro" data-i18n="gamesIntro">
+      Sigue el calendario y los resultados de los Cavaliers.
+    </p>
+    <div class="content-area" data-i18n="gamesPlaceholder">
+      Aquí agregaremos próximos partidos, resultados, horarios,
+      estadísticas y análisis de cada encuentro.
     </div>
   </section>
+
+  <hr class="divider">
 
   <section class="section" id="historia">
-    <div class="section-heading"><h2 data-i18n="historyTitle">HISTORIA</h2></div>
-    <p class="intro" data-i18n="historyIntro">Un recorrido por las temporadas, leyendas y momentos que marcaron a la franquicia.</p>
-    <div class="placeholder" data-i18n="historyPlaceholder">
-      Historia de la franquicia, temporadas memorables, figuras históricas,
-      récords y momentos importantes.
+    <h2 data-i18n="historyTitle">HISTORIA</h2>
+    <p class="section-intro" data-i18n="historyIntro">
+      Un recorrido por el pasado y los momentos inolvidables de la franquicia.
+    </p>
+    <div class="content-area" data-i18n="historyPlaceholder">
+      Aquí agregaremos temporadas históricas, leyendas, récords,
+      campeonatos y momentos importantes.
     </div>
   </section>
 
+  <hr class="divider">
+
   <section class="section" id="noticias">
-    <div class="section-heading"><h2 data-i18n="newsTitle">NOTICIAS Y ANÁLISIS</h2></div>
-    <p class="intro" data-i18n="newsIntro">Artículos, opiniones y análisis propios sobre la actualidad de los Cavaliers.</p>
-    <div class="placeholder" data-i18n="newsPlaceholder">
-      Próximamente: artículos completos, análisis tácticos,
-      novedades del equipo y opinión de CAVS LATAM.
+    <h2 data-i18n="newsTitle">NOTICIAS Y ANÁLISIS</h2>
+    <p class="section-intro" data-i18n="newsIntro">
+      Actualidad, artículos, opiniones y análisis tácticos.
+    </p>
+    <div class="content-area" data-i18n="newsPlaceholder">
+      Aquí publicaremos noticias, artículos extensos, análisis
+      de rendimiento y opiniones sobre Cleveland Cavaliers.
     </div>
   </section>
 </main>
 
 <footer>
-  <strong>CAVS LATAM</strong><br>
-  <span data-i18n="footerText">Un espacio creado por aficionados para aficionados.</span><br>
-  <span data-i18n="disclaimer">Sitio independiente de aficionados. No está afiliado ni patrocinado por la NBA o Cleveland Cavaliers.</span>
+  <strong>CAVS LATAM</strong>
+  <p data-i18n="footerText">La comunidad de Cleveland Cavaliers en Latinoamérica.</p>
+  <p>𝕏 <a href="https://x.com/cavs_latamm"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color:#ffb81c;">@cavs_latamm</a></p>
+  <small>Fan site independiente. No afiliado ni patrocinado por la NBA o Cleveland Cavaliers.</small>
 </footer>
 
 <script>
@@ -327,79 +343,87 @@ const translations = {
   es: {
     navHome:"INICIO", navRoster:"PLANTILLA", navStats:"ESTADÍSTICAS",
     navGames:"PARTIDOS", navHistory:"HISTORIA", navNews:"NOTICIAS",
-    heroText:"Toda la pasión de los Cavaliers en un solo lugar. Noticias, análisis, estadísticas, partidos e historia para los aficionados de Latinoamérica.",
-    heroButton:"EXPLORAR CAVS LATAM", featured:"DESTACADO",
-    welcomeTitle:"La casa de los Cavaliers en Latinoamérica",
-    welcomeText:"Un espacio dedicado a seguir al equipo, conocer a sus jugadores, revisar sus números y analizar cada momento de la temporada. Estamos preparando cada sección para ofrecer información completa.",
-    rosterTitle:"PLANTILLA", rosterIntro:"Conoce a cada jugador de Cleveland: perfil, posición, trayectoria y estadísticas individuales.",
-    rosterPlaceholder:"Próximamente: fichas individuales de los jugadores, con biografía, número, posición, trayectoria y rendimiento.",
-    statsTitle:"ESTADÍSTICAS", statsIntro:"Números del equipo y de cada jugador, explicados con detalle.",
-    statsCard1:"Estadísticas individuales", statsCard1Text:"Puntos, rebotes, asistencias, robos, tapones y porcentajes.",
-    statsCard2:"Estadísticas del equipo", statsCard2Text:"Rendimiento colectivo, ataque, defensa y tendencias.",
-    statsCard3:"Análisis y comparaciones", statsCard3Text:"Comparaciones entre jugadores y evolución durante la temporada.",
-    gamesTitle:"PARTIDOS", gamesIntro:"Calendario, resultados y análisis de cada encuentro de Cleveland.",
-    gamesPlaceholder:"Aquí publicaremos próximos partidos, resultados finales, resúmenes y análisis detallados de cada encuentro.",
-    historyTitle:"HISTORIA", historyIntro:"Un recorrido por las temporadas, leyendas y momentos que marcaron a la franquicia.",
-    historyPlaceholder:"Historia de la franquicia, temporadas memorables, figuras históricas, récords y momentos importantes.",
-    newsTitle:"NOTICIAS Y ANÁLISIS", newsIntro:"Artículos, opiniones y análisis propios sobre la actualidad de los Cavaliers.",
-    newsPlaceholder:"Próximamente: artículos completos, análisis tácticos, novedades del equipo y opinión de CAVS LATAM.",
-    footerText:"Un espacio creado por aficionados para aficionados.",
-    disclaimer:"Sitio independiente de aficionados. No está afiliado ni patrocinado por la NBA o Cleveland Cavaliers."
+    heroText:"La pasión de los Cavaliers en Latinoamérica. Noticias, análisis, estadísticas, partidos e historia de la franquicia.",
+    welcomeTitle:"BIENVENIDOS A CAVS LATAM",
+    welcomeText:"Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers. Un sitio creado por aficionados para aficionados.",
+    cardRoster:"Plantilla", cardRosterText:"Conoce a los jugadores, sus perfiles y sus estadísticas.",
+    cardStats:"Estadísticas", cardStatsText:"Datos individuales, colectivos y análisis del equipo.",
+    cardGames:"Partidos", cardGamesText:"Calendario, resultados y análisis de cada encuentro.",
+    cardNews:"Noticias", cardNewsText:"Actualidad, opiniones y análisis de los Cavaliers.",
+    rosterTitle:"PLANTILLA", rosterIntro:"Información detallada de cada jugador de Cleveland Cavaliers.",
+    rosterPlaceholder:"Aquí agregaremos los perfiles individuales: biografía, posición, número, trayectoria y estadísticas de cada jugador.",
+    statsTitle:"ESTADÍSTICAS", statsIntro:"Datos y rendimiento individual y colectivo de Cleveland.",
+    statsPlaceholder:"Aquí agregaremos puntos, rebotes, asistencias, porcentajes, comparaciones, estadísticas por partido y análisis.",
+    gamesTitle:"PARTIDOS", gamesIntro:"Sigue el calendario y los resultados de los Cavaliers.",
+    gamesPlaceholder:"Aquí agregaremos próximos partidos, resultados, horarios, estadísticas y análisis de cada encuentro.",
+    historyTitle:"HISTORIA", historyIntro:"Un recorrido por el pasado y los momentos inolvidables de la franquicia.",
+    historyPlaceholder:"Aquí agregaremos temporadas históricas, leyendas, récords, campeonatos y momentos importantes.",
+    newsTitle:"NOTICIAS Y ANÁLISIS", newsIntro:"Actualidad, artículos, opiniones y análisis tácticos.",
+    newsPlaceholder:"Aquí publicaremos noticias, artículos extensos, análisis de rendimiento y opiniones sobre Cleveland Cavaliers.",
+    footerText:"La comunidad de Cleveland Cavaliers en Latinoamérica."
   },
+
   pt: {
     navHome:"INÍCIO", navRoster:"ELENCO", navStats:"ESTATÍSTICAS",
     navGames:"JOGOS", navHistory:"HISTÓRIA", navNews:"NOTÍCIAS",
-    heroText:"Toda a paixão pelos Cavaliers em um só lugar. Notícias, análises, estatísticas, jogos e história para os fãs da América Latina.",
-    heroButton:"EXPLORAR CAVS LATAM", featured:"DESTAQUE",
-    welcomeTitle:"A casa dos Cavaliers na América Latina",
-    welcomeText:"Um espaço dedicado a acompanhar o time, conhecer seus jogadores, conferir seus números e analisar cada momento da temporada. Estamos preparando cada seção para oferecer informações completas.",
-    rosterTitle:"ELENCO", rosterIntro:"Conheça cada jogador de Cleveland: perfil, posição, carreira e estatísticas individuais.",
-    rosterPlaceholder:"Em breve: perfis individuais dos jogadores, com biografia, número, posição, carreira e desempenho.",
-    statsTitle:"ESTATÍSTICAS", statsIntro:"Números do time e de cada jogador, explicados em detalhes.",
-    statsCard1:"Estatísticas individuais", statsCard1Text:"Pontos, rebotes, assistências, roubos, tocos e aproveitamento.",
-    statsCard2:"Estatísticas do time", statsCard2Text:"Desempenho coletivo, ataque, defesa e tendências.",
-    statsCard3:"Análises e comparações", statsCard3Text:"Comparações entre jogadores e evolução durante a temporada.",
-    gamesTitle:"JOGOS", gamesIntro:"Calendário, resultados e análises de cada partida de Cleveland.",
-    gamesPlaceholder:"Aqui publicaremos próximos jogos, resultados finais, resumos e análises detalhadas de cada partida.",
-    historyTitle:"HISTÓRIA", historyIntro:"Uma jornada pelas temporadas, lendas e momentos que marcaram a franquia.",
-    historyPlaceholder:"História da franquia, temporadas memoráveis, grandes nomes, recordes e momentos importantes.",
-    newsTitle:"NOTÍCIAS E ANÁLISES", newsIntro:"Artigos, opiniões e análises próprias sobre o momento dos Cavaliers.",
-    newsPlaceholder:"Em breve: artigos completos, análises táticas, novidades do time e opiniões do CAVS LATAM.",
-    footerText:"Um espaço criado por fãs para fãs.",
-    disclaimer:"Site independente de fãs. Não é afiliado nem patrocinado pela NBA ou pelo Cleveland Cavaliers."
+    heroText:"A paixão pelos Cavaliers na América Latina. Notícias, análises, estatísticas, jogos e história da franquia.",
+    welcomeTitle:"BEM-VINDOS AO CAVS LATAM",
+    welcomeText:"Seu espaço dedicado a acompanhar cada detalhe do Cleveland Cavaliers. Um site feito por fãs para fãs.",
+    cardRoster:"Elenco", cardRosterText:"Conheça os jogadores, seus perfis e suas estatísticas.",
+    cardStats:"Estatísticas", cardStatsText:"Dados individuais, coletivos e análises da equipe.",
+    cardGames:"Jogos", cardGamesText:"Calendário, resultados e análises de cada partida.",
+    cardNews:"Notícias", cardNewsText:"Atualidades, opiniões e análises dos Cavaliers.",
+    rosterTitle:"ELENCO", rosterIntro:"Informações detalhadas de cada jogador do Cleveland Cavaliers.",
+    rosterPlaceholder:"Aqui adicionaremos os perfis individuais: biografia, posição, número, carreira e estatísticas de cada jogador.",
+    statsTitle:"ESTATÍSTICAS", statsIntro:"Dados e desempenho individual e coletivo de Cleveland.",
+    statsPlaceholder:"Aqui adicionaremos pontos, rebotes, assistências, porcentagens, comparações e análises.",
+    gamesTitle:"JOGOS", gamesIntro:"Acompanhe o calendário e os resultados dos Cavaliers.",
+    gamesPlaceholder:"Aqui adicionaremos próximos jogos, resultados, horários, estatísticas e análises.",
+    historyTitle:"HISTÓRIA", historyIntro:"Uma viagem pelo passado e pelos momentos inesquecíveis da franquia.",
+    historyPlaceholder:"Aqui adicionaremos temporadas históricas, lendas, recordes, títulos e momentos importantes.",
+    newsTitle:"NOTÍCIAS E ANÁLISES", newsIntro:"Atualidades, artigos, opiniões e análises táticas.",
+    newsPlaceholder:"Aqui publicaremos notícias, artigos, análises de desempenho e opiniões sobre o Cleveland Cavaliers.",
+    footerText:"A comunidade do Cleveland Cavaliers na América Latina."
   },
+
   en: {
     navHome:"HOME", navRoster:"ROSTER", navStats:"STATISTICS",
     navGames:"GAMES", navHistory:"HISTORY", navNews:"NEWS",
-    heroText:"All the passion of the Cavaliers in one place. News, analysis, statistics, games and history for fans across Latin America.",
-    heroButton:"EXPLORE CAVS LATAM", featured:"FEATURED",
-    welcomeTitle:"The home of the Cavaliers in Latin America",
-    welcomeText:"A space dedicated to following the team, getting to know its players, checking the numbers and analyzing every moment of the season. We are preparing each section to provide detailed coverage.",
-    rosterTitle:"ROSTER", rosterIntro:"Meet every Cleveland player: profile, position, career and individual statistics.",
-    rosterPlaceholder:"Coming soon: individual player profiles with biography, number, position, career and performance.",
-    statsTitle:"STATISTICS", statsIntro:"Team and player numbers, explained in detail.",
-    statsCard1:"Player statistics", statsCard1Text:"Points, rebounds, assists, steals, blocks and shooting percentages.",
-    statsCard2:"Team statistics", statsCard2Text:"Team performance, offense, defense and trends.",
-    statsCard3:"Analysis and comparisons", statsCard3Text:"Player comparisons and progress throughout the season.",
-    gamesTitle:"GAMES", gamesIntro:"Cleveland's schedule, results and game analysis.",
-    gamesPlaceholder:"Upcoming games, final scores, recaps and detailed game analysis will be published here.",
-    historyTitle:"HISTORY", historyIntro:"A journey through the seasons, legends and moments that shaped the franchise.",
-    historyPlaceholder:"Franchise history, memorable seasons, legendary players, records and important moments.",
-    newsTitle:"NEWS AND ANALYSIS", newsIntro:"Original articles, opinions and analysis about the Cavaliers.",
-    newsPlaceholder:"Coming soon: full articles, tactical analysis, team updates and CAVS LATAM opinions.",
-    footerText:"A space created by fans, for fans.",
-    disclaimer:"Independent fan website. Not affiliated with or sponsored by the NBA or Cleveland Cavaliers."
+    heroText:"The passion of the Cavaliers in Latin America. News, analysis, statistics, games and franchise history.",
+    welcomeTitle:"WELCOME TO CAVS LATAM",
+    welcomeText:"Your place to follow every detail of the Cleveland Cavaliers. A fan-created site for fans.",
+    cardRoster:"Roster", cardRosterText:"Meet the players, their profiles and statistics.",
+    cardStats:"Statistics", cardStatsText:"Individual and team data and analysis.",
+    cardGames:"Games", cardGamesText:"Schedule, results and analysis of every game.",
+    cardNews:"News", cardNewsText:"Latest news, opinions and Cavaliers analysis.",
+    rosterTitle:"ROSTER", rosterIntro:"Detailed information about every Cleveland Cavaliers player.",
+    rosterPlaceholder:"Player profiles will include biographies, positions, numbers, careers and statistics.",
+    statsTitle:"STATISTICS", statsIntro:"Individual and team performance data for Cleveland.",
+    statsPlaceholder:"Points, rebounds, assists, percentages, comparisons, game statistics and analysis will appear here.",
+    gamesTitle:"GAMES", gamesIntro:"Follow the Cavaliers schedule and results.",
+    gamesPlaceholder:"Upcoming games, results, times, statistics and game analysis will appear here.",
+    historyTitle:"HISTORY", historyIntro:"A journey through the franchise's past and unforgettable moments.",
+    historyPlaceholder:"Historic seasons, legends, records, championships and important moments will appear here.",
+    newsTitle:"NEWS AND ANALYSIS", newsIntro:"Latest news, articles, opinions and tactical analysis.",
+    newsPlaceholder:"News, in-depth articles, performance analysis and opinions about the Cleveland Cavaliers will appear here.",
+    footerText:"The Cleveland Cavaliers community in Latin America."
   }
 };
 
-document.getElementById("language").addEventListener("change", function() {
-  const language = translations[this.value];
-  document.documentElement.lang = this.value;
+function changeLanguage() {
+  const language = document.getElementById("language").value;
+  const dictionary = translations[language];
+
+  document.documentElement.lang = language;
+
   document.querySelectorAll("[data-i18n]").forEach(element => {
-    const key = element.getAttribute("data-i18n");
-    if (language[key]) element.textContent = language[key];
+    const key = element.dataset.i18n;
+    if (dictionary[key]) {
+      element.textContent = dictionary[key];
+    }
   });
-});
+}
 </script>
+
 </body>
 </html>
