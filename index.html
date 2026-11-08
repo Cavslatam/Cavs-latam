@@ -1,216 +1,314 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAVS LATAM | Cleveland Cavaliers</title>
-  <meta name="description" content="CAVS LATAM: noticias, estadísticas, partidos e historia de Cleveland Cavaliers en español.">
-  <style>
-    :root {
-      --wine: #860038;
-      --gold: #ffb81c;
-      --bg: #101014;
-      --panel: #1b1b22;
-      --text: #f5f5f5;
-      --muted: #aaaab4;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    header {
-      background: #15151b;
-      border-bottom: 3px solid var(--gold);
-      padding: 18px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .brand span { color: var(--gold); }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    select, .x-button {
-      padding: 10px 13px;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background: #24242c;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .x-button {
-      background: var(--wine);
-      border-color: var(--gold);
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 13px;
-      background: #202027;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 13px;
-      font-size: 13px;
-      font-weight: bold;
-      border-radius: 5px;
-    }
-
-    nav a:hover {
-      background: var(--wine);
-      color: var(--gold);
-    }
-
-    .hero {
-      min-height: 350px;
-      padding: 75px 8%;
-      text-align: center;
-      background:
-        linear-gradient(90deg, rgba(20,0,10,.94), rgba(20,20,25,.82)),
-        linear-gradient(135deg, #860038, #222 65%);
-      border-bottom: 1px solid #333;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 65px);
-      margin: 0 0 15px;
-      font-weight: 900;
-    }
-
-    .hero h1 span { color: var(--gold); }
-
-    .hero p {
-      color: #ddd;
-      font-size: 18px;
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.6;
-    }
-
-    .section {
-      max-width: 1150px;
-      margin: auto;
-      padding: 55px 22px;
-      scroll-margin-top: 20px;
-    }
-
-    .section h2 {
-      font-size: 29px;
-      border-left: 5px solid var(--gold);
-      padding-left: 14px;
-      margin-bottom: 25px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 25px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid #33333d;
-      border-radius: 9px;
-      padding: 23px;
-      min-height: 155px;
-    }
-
-    .card h3 {
-      color: var(--gold);
-      margin-top: 0;
-    }
-
-    .card p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .content-area {
-      background: var(--panel);
-      border: 1px solid #33333d;
-      border-radius: 9px;
-      padding: 25px;
-      color: var(--muted);
-      line-height: 1.8;
-      min-height: 120px;
-    }
-
-    .divider {
-      border: 0;
-      border-top: 1px solid #303039;
-      max-width: 1100px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      background: #15151b;
-      border-top: 3px solid var(--gold);
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    footer strong { color: var(--gold); }
-
-    @media (max-width: 600px) {
-      header { justify-content: center; text-align: center; }
-      .brand { width: 100%; }
-      nav { gap: 2px; }
-      nav a { padding: 9px 8px; font-size: 12px; }
-      .hero { padding: 60px 20px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAVS LATAM | Cleveland Cavaliers</title>
+<meta name="description" content="CAVS LATAM: la comunidad de Cleveland Cavaliers en Latinoamérica.">
+<style>
+:root {
+  --wine:#860038;
+  --gold:#ffb81c;
+  --bg:#101014;
+  --panel:#1b1b22;
+  --panel2:#24242d;
+  --text:#f5f5f5;
+  --muted:#aaaab4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header{
+  background:#15151b;
+  border-bottom:3px solid var(--gold);
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.brand{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.brand span{color:var(--gold)}
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+select,.x-button{
+  padding:10px 13px;
+  border-radius:6px;
+  border:1px solid #444;
+  background:#24242c;
+  color:white;
+  font-weight:bold;
+}
+.x-button{
+  background:var(--wine);
+  border-color:var(--gold);
+  text-decoration:none;
+}
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:13px;
+  background:#202027;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:10px 13px;
+  font-size:13px;
+  font-weight:bold;
+  border-radius:5px;
+}
+nav a:hover{background:var(--wine);color:var(--gold)}
+.hero{
+  min-height:340px;
+  padding:75px 8%;
+  text-align:center;
+  background:linear-gradient(120deg,#350018,#860038 48%,#17171d);
+  border-bottom:1px solid #333;
+}
+.hero h1{
+  font-size:clamp(38px,7vw,65px);
+  margin:0 0 15px;
+  font-weight:900;
+}
+.hero h1 span{color:var(--gold)}
+.hero p{
+  color:#ddd;
+  font-size:18px;
+  max-width:720px;
+  margin:auto;
+  line-height:1.6;
+}
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:55px 22px;
+  scroll-margin-top:65px;
+}
+.section h2{
+  font-size:29px;
+  border-left:5px solid var(--gold);
+  padding-left:14px;
+  margin-bottom:20px;
+}
+.intro{
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:25px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.card{
+  background:var(--panel);
+  border:1px solid #33333d;
+  border-radius:9px;
+  padding:23px;
+}
+.card h3{color:var(--gold);margin-top:0}
+.card p{color:var(--muted);line-height:1.6}
+.content-area{
+  background:var(--panel);
+  border:1px solid #33333d;
+  border-radius:9px;
+  padding:25px;
+  color:var(--muted);
+  line-height:1.8;
+}
+.divider{
+  border:0;
+  border-top:1px solid #303039;
+  max-width:1150px;
+}
+.roster-tools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:20px 0;
+}
+.roster-tools input,.roster-tools select{
+  background:var(--panel2);
+  color:white;
+  border:1px solid #444;
+  border-radius:6px;
+  padding:12px;
+}
+.roster-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+  gap:18px;
+}
+.player-card{
+  background:linear-gradient(160deg,#24242d,#17171c);
+  border:1px solid #393943;
+  border-radius:12px;
+  overflow:hidden;
+  transition:transform .2s,border-color .2s;
+}
+.player-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+}
+.player-top{
+  min-height:145px;
+  background:linear-gradient(135deg,#550024,#860038 60%,#26232a);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+}
+.player-number{
+  font-size:70px;
+  font-weight:900;
+  color:rgba(255,255,255,.92);
+  line-height:1;
+}
+.player-position{
+  color:var(--gold);
+  font-size:12px;
+  font-weight:bold;
+  text-align:right;
+}
+.player-info{padding:18px}
+.player-info h3{
+  margin:0 0 7px;
+  font-size:20px;
+}
+.player-info .height{
+  color:var(--muted);
+  font-size:13px;
+}
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:16px;
+}
+.stat{
+  background:#111116;
+  border-radius:6px;
+  padding:9px 5px;
+  text-align:center;
+}
+.stat strong{
+  display:block;
+  color:var(--gold);
+  font-size:18px;
+}
+.stat small{
+  color:var(--muted);
+  font-size:10px;
+}
+.player-extra{
+  border-top:1px solid #363640;
+  margin-top:14px;
+  padding-top:12px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+.player-extra strong{color:white}
+.no-stats{
+  color:#e7c77b;
+  font-size:12px;
+  margin-top:12px;
+}
+.table-wrap{overflow-x:auto}
+.stats-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:850px;
+  background:var(--panel);
+  border-radius:8px;
+  overflow:hidden;
+}
+.stats-table th,.stats-table td{
+  padding:12px 10px;
+  border-bottom:1px solid #363640;
+  text-align:center;
+  font-size:13px;
+}
+.stats-table th{
+  background:var(--wine);
+  color:white;
+}
+.stats-table td:first-child{
+  text-align:left;
+  font-weight:bold;
+}
+.stats-table tr:hover{background:#292933}
+.note{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+  margin-top:15px;
+}
+.game-result{
+  background:linear-gradient(130deg,#350018,#22222a);
+  border:1px solid var(--gold);
+  border-radius:10px;
+  padding:24px;
+  text-align:center;
+}
+.score{
+  font-size:38px;
+  font-weight:900;
+  margin:12px 0;
+}
+.score span{color:var(--gold)}
+footer{
+  text-align:center;
+  padding:35px 20px;
+  background:#15151b;
+  border-top:3px solid var(--gold);
+  color:var(--muted);
+  line-height:1.7;
+}
+footer strong{color:var(--gold)}
+footer a{color:var(--gold)}
+@media(max-width:600px){
+  header{justify-content:center;text-align:center}
+  .brand{width:100%}
+  nav{gap:2px}
+  nav a{padding:9px 7px;font-size:11px}
+  .hero{padding:60px 20px}
+  .section{padding:40px 15px}
+}
+</style>
 </head>
-
 <body>
 
 <header>
   <div class="brand">CAVS <span>LATAM</span></div>
-
   <div class="header-actions">
     <select id="language" onchange="changeLanguage()">
       <option value="es">🇪🇸 Español</option>
       <option value="pt">🇧🇷 Português</option>
       <option value="en">🇺🇸 English</option>
     </select>
-
-    <a class="x-button"
-       href="https://x.com/cavs_latamm"
-       target="_blank"
-       rel="noopener noreferrer">𝕏 SEGUIR</a>
+    <a class="x-button" href="https://x.com/cavs_latamm"
+       target="_blank" rel="noopener noreferrer">𝕏 SEGUIR</a>
   </div>
 </header>
 
@@ -224,206 +322,300 @@
 </nav>
 
 <main>
-  <section class="hero" id="inicio">
-    <h1>CLEVELAND <span>CAVALIERS</span></h1>
-    <p data-i18n="heroText">
-      La pasión de los Cavaliers en Latinoamérica. Noticias, análisis,
-      estadísticas, partidos e historia de la franquicia.
-    </p>
-  </section>
+<section class="hero" id="inicio">
+  <h1>CLEVELAND <span>CAVALIERS</span></h1>
+  <p data-i18n="heroText">
+    La pasión de los Cavaliers en Latinoamérica. Noticias, análisis,
+    estadísticas, partidos e historia de la franquicia.
+  </p>
+</section>
 
-  <section class="section">
-    <h2 data-i18n="welcomeTitle">BIENVENIDOS A CAVS LATAM</h2>
-    <p class="section-intro" data-i18n="welcomeText">
-      Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers.
-      Un sitio creado por aficionados para aficionados.
-    </p>
+<section class="section">
+  <h2 data-i18n="welcomeTitle">BIENVENIDOS A CAVS LATAM</h2>
+  <p class="intro" data-i18n="welcomeText">
+    Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers.
+    Un sitio creado por aficionados para aficionados.
+  </p>
+  <div class="cards">
+    <article class="card">
+      <h3 data-i18n="cardRoster">Plantilla</h3>
+      <p data-i18n="cardRosterText">Conoce a los jugadores, sus perfiles y estadísticas.</p>
+    </article>
+    <article class="card">
+      <h3 data-i18n="cardStats">Estadísticas</h3>
+      <p data-i18n="cardStatsText">Datos individuales, colectivos y análisis del equipo.</p>
+    </article>
+    <article class="card">
+      <h3 data-i18n="cardGames">Partidos</h3>
+      <p data-i18n="cardGamesText">Calendario, resultados y análisis de cada encuentro.</p>
+    </article>
+    <article class="card">
+      <h3 data-i18n="cardNews">Noticias</h3>
+      <p data-i18n="cardNewsText">Actualidad, opiniones y análisis de los Cavaliers.</p>
+    </article>
+  </div>
+</section>
 
-    <div class="cards">
-      <article class="card">
-        <h3 data-i18n="cardRoster">Plantilla</h3>
-        <p data-i18n="cardRosterText">Conoce a los jugadores, sus perfiles y sus estadísticas.</p>
-      </article>
+<hr class="divider">
 
-      <article class="card">
-        <h3 data-i18n="cardStats">Estadísticas</h3>
-        <p data-i18n="cardStatsText">Datos individuales, colectivos y análisis del equipo.</p>
-      </article>
+<section class="section" id="plantilla">
+  <h2 data-i18n="rosterTitle">PLANTILLA 2026-27</h2>
+  <p class="intro" data-i18n="rosterIntro">
+    Conoce a los jugadores de Cleveland Cavaliers, sus dorsales,
+    posiciones y estadísticas individuales.
+  </p>
 
-      <article class="card">
-        <h3 data-i18n="cardGames">Partidos</h3>
-        <p data-i18n="cardGamesText">Calendario, resultados y análisis de cada encuentro.</p>
-      </article>
+  <div class="roster-tools">
+    <input id="playerSearch" type="search"
+      placeholder="Buscar jugador..." oninput="filterPlayers()">
+    <select id="positionFilter" onchange="filterPlayers()">
+      <option value="all">Todas las posiciones</option>
+      <option value="G">Bases y escoltas</option>
+      <option value="F">Aleros y ala-pívots</option>
+      <option value="C">Pívots</option>
+    </select>
+  </div>
 
-      <article class="card">
-        <h3 data-i18n="cardNews">Noticias</h3>
-        <p data-i18n="cardNewsText">Actualidad, opiniones y análisis de los Cavaliers.</p>
-      </article>
-    </div>
-  </section>
+  <div class="roster-grid" id="rosterGrid"></div>
+  <p class="note" data-i18n="rosterNote">
+    Las estadísticas son promedios por partido. Los jugadores sin partidos
+    disputados aparecen sin estadísticas. Los datos de temporada disponibles
+    en esta tabla llegan hasta el 6 de noviembre de 2026.
+  </p>
+</section>
 
-  <hr class="divider">
+<hr class="divider">
 
-  <section class="section" id="plantilla">
-    <h2 data-i18n="rosterTitle">PLANTILLA</h2>
-    <p class="section-intro" data-i18n="rosterIntro">
-      Información detallada de cada jugador de Cleveland Cavaliers.
-    </p>
-    <div class="content-area" data-i18n="rosterPlaceholder">
-      Aquí agregaremos los perfiles individuales: biografía, posición,
-      número, trayectoria y estadísticas de cada jugador.
-    </div>
-  </section>
+<section class="section" id="estadisticas">
+  <h2 data-i18n="statsTitle">ESTADÍSTICAS</h2>
+  <p class="intro" data-i18n="statsIntro">
+    Rendimiento individual de los Cavaliers en la temporada 2026-27.
+  </p>
+  <div class="table-wrap">
+    <table class="stats-table">
+      <thead>
+        <tr>
+          <th>Jugador</th><th>N.º</th><th>PJ</th><th>PTS</th>
+          <th>REB</th><th>AST</th><th>ROB</th><th>TAP</th>
+          <th>TC%</th><th>3P%</th><th>TL%</th>
+        </tr>
+      </thead>
+      <tbody id="statsTableBody"></tbody>
+    </table>
+  </div>
+  <p class="note">
+    PJ: partidos jugados · PTS: puntos · REB: rebotes · AST: asistencias ·
+    ROB: robos · TAP: tapones · TC%: tiros de campo · 3P%: triples · TL%: libres.
+  </p>
+  <p class="note">
+    Corte estadístico de temporada consultado: 6 de noviembre de 2026.
+    El partido del 7 de noviembre se presenta por separado en la sección Partidos.
+  </p>
+</section>
 
-  <hr class="divider">
+<hr class="divider">
 
-  <section class="section" id="estadisticas">
-    <h2 data-i18n="statsTitle">ESTADÍSTICAS</h2>
-    <p class="section-intro" data-i18n="statsIntro">
-      Datos y rendimiento individual y colectivo de Cleveland.
-    </p>
-    <div class="content-area" data-i18n="statsPlaceholder">
-      Aquí agregaremos puntos, rebotes, asistencias, porcentajes,
-      comparaciones, estadísticas por partido y análisis.
-    </div>
-  </section>
+<section class="section" id="partidos">
+  <h2 data-i18n="gamesTitle">PARTIDOS</h2>
+  <p class="intro" data-i18n="gamesIntro">
+    Calendario y resultados de Cleveland Cavaliers.
+  </p>
+  <div class="game-result">
+    <h3>NEW YORK KNICKS vs CLEVELAND CAVALIERS</h3>
+    <p>7 DE NOVIEMBRE DE 2026</p>
+    <div class="score">109 <span>-</span> 97</div>
+    <p>Victoria de New York Knicks</p>
+    <p><strong>Donovan Mitchell:</strong> 37 puntos, 4 rebotes y 4 asistencias.</p>
+  </div>
+  <div class="content-area" style="margin-top:20px">
+    Aquí agregaremos los próximos partidos, horarios, resultados,
+    estadísticas completas y análisis de cada encuentro.
+  </div>
+</section>
 
-  <hr class="divider">
+<hr class="divider">
 
-  <section class="section" id="partidos">
-    <h2 data-i18n="gamesTitle">PARTIDOS</h2>
-    <p class="section-intro" data-i18n="gamesIntro">
-      Sigue el calendario y los resultados de los Cavaliers.
-    </p>
-    <div class="content-area" data-i18n="gamesPlaceholder">
-      Aquí agregaremos próximos partidos, resultados, horarios,
-      estadísticas y análisis de cada encuentro.
-    </div>
-  </section>
+<section class="section" id="historia">
+  <h2 data-i18n="historyTitle">HISTORIA</h2>
+  <p class="intro" data-i18n="historyIntro">
+    Un recorrido por el pasado y los momentos inolvidables de la franquicia.
+  </p>
+  <div class="content-area">
+    Aquí agregaremos temporadas históricas, leyendas, récords,
+    campeonatos, jugadores históricos y momentos importantes.
+  </div>
+</section>
 
-  <hr class="divider">
+<hr class="divider">
 
-  <section class="section" id="historia">
-    <h2 data-i18n="historyTitle">HISTORIA</h2>
-    <p class="section-intro" data-i18n="historyIntro">
-      Un recorrido por el pasado y los momentos inolvidables de la franquicia.
-    </p>
-    <div class="content-area" data-i18n="historyPlaceholder">
-      Aquí agregaremos temporadas históricas, leyendas, récords,
-      campeonatos y momentos importantes.
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section class="section" id="noticias">
-    <h2 data-i18n="newsTitle">NOTICIAS Y ANÁLISIS</h2>
-    <p class="section-intro" data-i18n="newsIntro">
-      Actualidad, artículos, opiniones y análisis tácticos.
-    </p>
-    <div class="content-area" data-i18n="newsPlaceholder">
-      Aquí publicaremos noticias, artículos extensos, análisis
-      de rendimiento y opiniones sobre Cleveland Cavaliers.
-    </div>
-  </section>
+<section class="section" id="noticias">
+  <h2 data-i18n="newsTitle">NOTICIAS Y ANÁLISIS</h2>
+  <p class="intro" data-i18n="newsIntro">
+    Actualidad, artículos, opiniones y análisis tácticos.
+  </p>
+  <div class="content-area">
+    Aquí publicaremos noticias, artículos extensos, análisis de rendimiento
+    y opiniones sobre Cleveland Cavaliers.
+  </div>
+</section>
 </main>
 
 <footer>
   <strong>CAVS LATAM</strong>
-  <p data-i18n="footerText">La comunidad de Cleveland Cavaliers en Latinoamérica.</p>
+  <p>La comunidad de Cleveland Cavaliers en Latinoamérica.</p>
   <p>𝕏 <a href="https://x.com/cavs_latamm"
-          target="_blank"
-          rel="noopener noreferrer"
-          style="color:#ffb81c;">@cavs_latamm</a></p>
+      target="_blank" rel="noopener noreferrer">@cavs_latamm</a></p>
   <small>Fan site independiente. No afiliado ni patrocinado por la NBA o Cleveland Cavaliers.</small>
 </footer>
 
 <script>
+const players = [
+  {n:1,name:"James Harden",pos:"G",label:"Base",height:"1,93 m",gp:9,pts:"16,7",reb:"5,3",ast:"5,9",stl:"0,8",blk:"0,4",fg:"37,7",tp:"36,9",ft:"83,3"},
+  {n:3,name:"Thomas Bryant",pos:"C",label:"Pívot",height:"2,06 m",gp:4,pts:"9,0",reb:"2,0",ast:"0,0",stl:"0,0",blk:"0,3",fg:"47,6",tp:"41,7",ft:"78,6"},
+  {n:4,name:"Evan Mobley",pos:"C",label:"Pívot",height:"2,11 m",gp:9,pts:"19,1",reb:"8,0",ast:"3,6",stl:"0,6",blk:"1,2",fg:"56,6",tp:"51,3",ft:"64,9"},
+  {n:5,name:"Sam Merrill",pos:"G",label:"Escolta",height:"1,93 m",gp:9,pts:"7,7",reb:"3,4",ast:"1,9",stl:"1,0",blk:"0,1",fg:"38,6",tp:"32,6",ft:"91,7"},
+  {n:8,name:"Peyton Watson",pos:"F",label:"Alero",height:"2,01 m",gp:7,pts:"11,1",reb:"4,7",ast:"2,9",stl:"1,0",blk:"1,6",fg:"38,2",tp:"17,9",ft:"75,0"},
+  {n:9,name:"Craig Porter Jr.",pos:"G",label:"Base",height:"1,85 m",gp:7,pts:"0,7",reb:"1,7",ast:"1,0",stl:"0,3",blk:"0,3",fg:"40,0",tp:"33,3",ft:"—"},
+  {n:12,name:"Riley Minix",pos:"F",label:"Alero",height:"2,01 m",gp:1,pts:"0,0",reb:"3,0",ast:"0,0",stl:"0,0",blk:"0,0",fg:"0,0",tp:"0,0",ft:"—"},
+  {n:15,name:"Meleek Thomas",pos:"G",label:"Escolta",height:"1,91 m",gp:6,pts:"12,8",reb:"2,3",ast:"1,2",stl:"1,2",blk:"0,2",fg:"47,5",tp:"46,9",ft:"100,0"},
+  {n:18,name:"Khalifa Diop",pos:"C",label:"Pívot",height:"2,08 m",gp:"—",pts:"—",reb:"—",ast:"—",stl:"—",blk:"—",fg:"—",tp:"—",ft:"—"},
+  {n:20,name:"Jaylon Tyson",pos:"F",label:"Alero",height:"1,98 m",gp:5,pts:"7,8",reb:"3,6",ast:"2,8",stl:"0,6",blk:"0,4",fg:"41,0",tp:"22,7",ft:"50,0"},
+  {n:21,name:"Tristan Enaruna",pos:"F",label:"Alero",height:"2,01 m",gp:3,pts:"2,3",reb:"1,7",ast:"0,3",stl:"0,7",blk:"0,0",fg:"30,0",tp:"0,0",ft:"50,0"},
+  {n:24,name:"Tyrese Proctor",pos:"G",label:"Base",height:"1,93 m",gp:8,pts:"5,9",reb:"3,0",ast:"2,0",stl:"0,5",blk:"0,0",fg:"50,0",tp:"56,3",ft:"100,0"},
+  {n:31,name:"Jarrett Allen",pos:"C",label:"Pívot",height:"2,06 m",gp:8,pts:"13,3",reb:"7,8",ast:"1,3",stl:"0,6",blk:"1,5",fg:"62,1",tp:"66,7",ft:"68,8"},
+  {n:33,name:"Mario Hezonja",pos:"F",label:"Alero",height:"2,03 m",gp:9,pts:"9,3",reb:"6,3",ast:"1,9",stl:"0,8",blk:"0,1",fg:"45,8",tp:"34,1",ft:"50,0"},
+  {n:35,name:"Nae'Qwan Tomlin",pos:"F",label:"Ala-pívot",height:"2,03 m",gp:"—",pts:"—",reb:"—",ast:"—",stl:"—",blk:"—",fg:"—",tp:"—",ft:"—"},
+  {n:45,name:"Donovan Mitchell",pos:"G",label:"Escolta",height:"1,88 m",gp:9,pts:"22,6",reb:"5,2",ast:"5,8",stl:"1,2",blk:"0,4",fg:"47,3",tp:"38,7",ft:"82,0"},
+  {n:77,name:"Norchad Omier",pos:"F",label:"Ala-pívot",height:"1,96 m",gp:1,pts:"0,0",reb:"2,0",ast:"1,0",stl:"0,0",blk:"0,0",fg:"—",tp:"—",ft:"—"},
+  {n:88,name:"Ernest Udeh Jr.",pos:"C",label:"Pívot",height:"2,06 m",gp:"—",pts:"—",reb:"—",ast:"—",stl:"—",blk:"—",fg:"—",tp:"—",ft:"—"}
+];
+
+function playerCard(p){
+  const hasStats = p.gp !== "—";
+  return `
+  <article class="player-card">
+    <div class="player-top">
+      <div class="player-number">#${p.n}</div>
+      <div class="player-position">${p.label.toUpperCase()}<br>CLEVELAND</div>
+    </div>
+    <div class="player-info">
+      <h3>${p.name}</h3>
+      <div class="height">${p.label} · ${p.height}</div>
+      ${hasStats ? `
+      <div class="stat-grid">
+        <div class="stat"><strong>${p.pts}</strong><small>PTS</small></div>
+        <div class="stat"><strong>${p.reb}</strong><small>REB</small></div>
+        <div class="stat"><strong>${p.ast}</strong><small>AST</small></div>
+        <div class="stat"><strong>${p.stl}</strong><small>ROB</small></div>
+        <div class="stat"><strong>${p.blk}</strong><small>TAP</small></div>
+        <div class="stat"><strong>${p.gp}</strong><small>PJ</small></div>
+      </div>
+      <div class="player-extra">
+        <strong>TC:</strong> ${p.fg}% ·
+        <strong>3P:</strong> ${p.tp}% ·
+        <strong>TL:</strong> ${p.ft}%
+      </div>` : `
+      <div class="no-stats">Sin partidos registrados en la temporada consultada.</div>
+      `}
+    </div>
+  </article>`;
+}
+
+function renderPlayers(list=players){
+  document.getElementById("rosterGrid").innerHTML =
+    list.map(playerCard).join("");
+
+  document.getElementById("statsTableBody").innerHTML =
+    list.map(p => `
+      <tr>
+        <td>${p.name}</td><td>#${p.n}</td><td>${p.gp}</td>
+        <td>${p.pts}</td><td>${p.reb}</td><td>${p.ast}</td>
+        <td>${p.stl}</td><td>${p.blk}</td>
+        <td>${p.fg}%</td><td>${p.tp}%</td><td>${p.ft}%</td>
+      </tr>
+    `).join("");
+}
+
+function filterPlayers(){
+  const search = document.getElementById("playerSearch").value.toLowerCase();
+  const position = document.getElementById("positionFilter").value;
+  const filtered = players.filter(p =>
+    p.name.toLowerCase().includes(search) &&
+    (position === "all" || p.pos === position)
+  );
+  renderPlayers(filtered);
+}
+
+renderPlayers();
+
 const translations = {
-  es: {
-    navHome:"INICIO", navRoster:"PLANTILLA", navStats:"ESTADÍSTICAS",
-    navGames:"PARTIDOS", navHistory:"HISTORIA", navNews:"NOTICIAS",
+  es:{
+    navHome:"INICIO",navRoster:"PLANTILLA",navStats:"ESTADÍSTICAS",
+    navGames:"PARTIDOS",navHistory:"HISTORIA",navNews:"NOTICIAS",
     heroText:"La pasión de los Cavaliers en Latinoamérica. Noticias, análisis, estadísticas, partidos e historia de la franquicia.",
     welcomeTitle:"BIENVENIDOS A CAVS LATAM",
     welcomeText:"Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers. Un sitio creado por aficionados para aficionados.",
-    cardRoster:"Plantilla", cardRosterText:"Conoce a los jugadores, sus perfiles y sus estadísticas.",
-    cardStats:"Estadísticas", cardStatsText:"Datos individuales, colectivos y análisis del equipo.",
-    cardGames:"Partidos", cardGamesText:"Calendario, resultados y análisis de cada encuentro.",
-    cardNews:"Noticias", cardNewsText:"Actualidad, opiniones y análisis de los Cavaliers.",
-    rosterTitle:"PLANTILLA", rosterIntro:"Información detallada de cada jugador de Cleveland Cavaliers.",
-    rosterPlaceholder:"Aquí agregaremos los perfiles individuales: biografía, posición, número, trayectoria y estadísticas de cada jugador.",
-    statsTitle:"ESTADÍSTICAS", statsIntro:"Datos y rendimiento individual y colectivo de Cleveland.",
-    statsPlaceholder:"Aquí agregaremos puntos, rebotes, asistencias, porcentajes, comparaciones, estadísticas por partido y análisis.",
-    gamesTitle:"PARTIDOS", gamesIntro:"Sigue el calendario y los resultados de los Cavaliers.",
-    gamesPlaceholder:"Aquí agregaremos próximos partidos, resultados, horarios, estadísticas y análisis de cada encuentro.",
-    historyTitle:"HISTORIA", historyIntro:"Un recorrido por el pasado y los momentos inolvidables de la franquicia.",
-    historyPlaceholder:"Aquí agregaremos temporadas históricas, leyendas, récords, campeonatos y momentos importantes.",
-    newsTitle:"NOTICIAS Y ANÁLISIS", newsIntro:"Actualidad, artículos, opiniones y análisis tácticos.",
-    newsPlaceholder:"Aquí publicaremos noticias, artículos extensos, análisis de rendimiento y opiniones sobre Cleveland Cavaliers.",
-    footerText:"La comunidad de Cleveland Cavaliers en Latinoamérica."
+    cardRoster:"Plantilla",cardRosterText:"Conoce a los jugadores, sus perfiles y estadísticas.",
+    cardStats:"Estadísticas",cardStatsText:"Datos individuales, colectivos y análisis del equipo.",
+    cardGames:"Partidos",cardGamesText:"Calendario, resultados y análisis de cada encuentro.",
+    cardNews:"Noticias",cardNewsText:"Actualidad, opiniones y análisis de los Cavaliers.",
+    rosterTitle:"PLANTILLA 2026-27",
+    rosterIntro:"Conoce a los jugadores de Cleveland Cavaliers, sus dorsales, posiciones y estadísticas individuales.",
+    rosterNote:"Las estadísticas son promedios por partido. Los jugadores sin partidos disputados aparecen sin estadísticas. Los datos de temporada disponibles en esta tabla llegan hasta el 6 de noviembre de 2026.",
+    statsTitle:"ESTADÍSTICAS",
+    statsIntro:"Rendimiento individual de los Cavaliers en la temporada 2026-27.",
+    gamesTitle:"PARTIDOS",gamesIntro:"Calendario y resultados de Cleveland Cavaliers.",
+    historyTitle:"HISTORIA",historyIntro:"Un recorrido por el pasado y los momentos inolvidables de la franquicia.",
+    newsTitle:"NOTICIAS Y ANÁLISIS",newsIntro:"Actualidad, artículos, opiniones y análisis tácticos."
   },
-
-  pt: {
-    navHome:"INÍCIO", navRoster:"ELENCO", navStats:"ESTATÍSTICAS",
-    navGames:"JOGOS", navHistory:"HISTÓRIA", navNews:"NOTÍCIAS",
+  pt:{
+    navHome:"INÍCIO",navRoster:"ELENCO",navStats:"ESTATÍSTICAS",
+    navGames:"JOGOS",navHistory:"HISTÓRIA",navNews:"NOTÍCIAS",
     heroText:"A paixão pelos Cavaliers na América Latina. Notícias, análises, estatísticas, jogos e história da franquia.",
     welcomeTitle:"BEM-VINDOS AO CAVS LATAM",
     welcomeText:"Seu espaço dedicado a acompanhar cada detalhe do Cleveland Cavaliers. Um site feito por fãs para fãs.",
-    cardRoster:"Elenco", cardRosterText:"Conheça os jogadores, seus perfis e suas estatísticas.",
-    cardStats:"Estatísticas", cardStatsText:"Dados individuais, coletivos e análises da equipe.",
-    cardGames:"Jogos", cardGamesText:"Calendário, resultados e análises de cada partida.",
-    cardNews:"Notícias", cardNewsText:"Atualidades, opiniões e análises dos Cavaliers.",
-    rosterTitle:"ELENCO", rosterIntro:"Informações detalhadas de cada jogador do Cleveland Cavaliers.",
-    rosterPlaceholder:"Aqui adicionaremos os perfis individuais: biografia, posição, número, carreira e estatísticas de cada jogador.",
-    statsTitle:"ESTATÍSTICAS", statsIntro:"Dados e desempenho individual e coletivo de Cleveland.",
-    statsPlaceholder:"Aqui adicionaremos pontos, rebotes, assistências, porcentagens, comparações e análises.",
-    gamesTitle:"JOGOS", gamesIntro:"Acompanhe o calendário e os resultados dos Cavaliers.",
-    gamesPlaceholder:"Aqui adicionaremos próximos jogos, resultados, horários, estatísticas e análises.",
-    historyTitle:"HISTÓRIA", historyIntro:"Uma viagem pelo passado e pelos momentos inesquecíveis da franquia.",
-    historyPlaceholder:"Aqui adicionaremos temporadas históricas, lendas, recordes, títulos e momentos importantes.",
-    newsTitle:"NOTÍCIAS E ANÁLISES", newsIntro:"Atualidades, artigos, opiniões e análises táticas.",
-    newsPlaceholder:"Aqui publicaremos notícias, artigos, análises de desempenho e opiniões sobre o Cleveland Cavaliers.",
-    footerText:"A comunidade do Cleveland Cavaliers na América Latina."
+    cardRoster:"Elenco",cardRosterText:"Conheça os jogadores, seus perfis e estatísticas.",
+    cardStats:"Estatísticas",cardStatsText:"Dados individuais, coletivos e análises da equipe.",
+    cardGames:"Jogos",cardGamesText:"Calendário, resultados e análises de cada partida.",
+    cardNews:"Notícias",cardNewsText:"Atualidades, opiniões e análises dos Cavaliers.",
+    rosterTitle:"ELENCO 2026-27",
+    rosterIntro:"Conheça os jogadores do Cleveland Cavaliers, seus números, posições e estatísticas.",
+    rosterNote:"As estatísticas são médias por jogo. Jogadores sem partidas disputadas aparecem sem estatísticas. Os dados disponíveis chegam até 6 de novembro de 2026.",
+    statsTitle:"ESTATÍSTICAS",
+    statsIntro:"Desempenho individual dos Cavaliers na temporada 2026-27.",
+    gamesTitle:"JOGOS",gamesIntro:"Calendário e resultados do Cleveland Cavaliers.",
+    historyTitle:"HISTÓRIA",historyIntro:"Uma viagem pelo passado e pelos momentos inesquecíveis da franquia.",
+    newsTitle:"NOTÍCIAS E ANÁLISES",newsIntro:"Atualidades, artigos, opiniões e análises táticas."
   },
-
-  en: {
-    navHome:"HOME", navRoster:"ROSTER", navStats:"STATISTICS",
-    navGames:"GAMES", navHistory:"HISTORY", navNews:"NEWS",
+  en:{
+    navHome:"HOME",navRoster:"ROSTER",navStats:"STATISTICS",
+    navGames:"GAMES",navHistory:"HISTORY",navNews:"NEWS",
     heroText:"The passion of the Cavaliers in Latin America. News, analysis, statistics, games and franchise history.",
     welcomeTitle:"WELCOME TO CAVS LATAM",
     welcomeText:"Your place to follow every detail of the Cleveland Cavaliers. A fan-created site for fans.",
-    cardRoster:"Roster", cardRosterText:"Meet the players, their profiles and statistics.",
-    cardStats:"Statistics", cardStatsText:"Individual and team data and analysis.",
-    cardGames:"Games", cardGamesText:"Schedule, results and analysis of every game.",
-    cardNews:"News", cardNewsText:"Latest news, opinions and Cavaliers analysis.",
-    rosterTitle:"ROSTER", rosterIntro:"Detailed information about every Cleveland Cavaliers player.",
-    rosterPlaceholder:"Player profiles will include biographies, positions, numbers, careers and statistics.",
-    statsTitle:"STATISTICS", statsIntro:"Individual and team performance data for Cleveland.",
-    statsPlaceholder:"Points, rebounds, assists, percentages, comparisons, game statistics and analysis will appear here.",
-    gamesTitle:"GAMES", gamesIntro:"Follow the Cavaliers schedule and results.",
-    gamesPlaceholder:"Upcoming games, results, times, statistics and game analysis will appear here.",
-    historyTitle:"HISTORY", historyIntro:"A journey through the franchise's past and unforgettable moments.",
-    historyPlaceholder:"Historic seasons, legends, records, championships and important moments will appear here.",
-    newsTitle:"NEWS AND ANALYSIS", newsIntro:"Latest news, articles, opinions and tactical analysis.",
-    newsPlaceholder:"News, in-depth articles, performance analysis and opinions about the Cleveland Cavaliers will appear here.",
-    footerText:"The Cleveland Cavaliers community in Latin America."
+    cardRoster:"Roster",cardRosterText:"Meet the players, their profiles and statistics.",
+    cardStats:"Statistics",cardStatsText:"Individual and team data and analysis.",
+    cardGames:"Games",cardGamesText:"Schedule, results and analysis of every game.",
+    cardNews:"News",cardNewsText:"Latest news, opinions and Cavaliers analysis.",
+    rosterTitle:"2026-27 ROSTER",
+    rosterIntro:"Meet the Cleveland Cavaliers players, their jersey numbers, positions and individual statistics.",
+    rosterNote:"Statistics are per-game averages. Players who have not appeared are shown without statistics. Available season data runs through November 6, 2026.",
+    statsTitle:"STATISTICS",
+    statsIntro:"Individual Cavaliers performance in the 2026-27 season.",
+    gamesTitle:"GAMES",gamesIntro:"Cleveland Cavaliers schedule and results.",
+    historyTitle:"HISTORY",historyIntro:"A journey through the franchise's past and unforgettable moments.",
+    newsTitle:"NEWS AND ANALYSIS",newsIntro:"Latest news, articles, opinions and tactical analysis."
   }
 };
 
-function changeLanguage() {
-  const language = document.getElementById("language").value;
-  const dictionary = translations[language];
-
-  document.documentElement.lang = language;
-
-  document.querySelectorAll("[data-i18n]").forEach(element => {
-    const key = element.dataset.i18n;
-    if (dictionary[key]) {
-      element.textContent = dictionary[key];
-    }
+function changeLanguage(){
+  const lang=document.getElementById("language").value;
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.dataset.i18n;
+    if(translations[lang][key]) el.textContent=translations[lang][key];
   });
 }
 </script>
-
 </body>
 </html>
