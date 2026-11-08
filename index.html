@@ -5,387 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CAVS LATAM | Cleveland Cavaliers</title>
 <meta name="description" content="CAVS LATAM: la comunidad de Cleveland Cavaliers en Latinoamérica.">
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
-:root{
---wine:#860038;--gold:#ffb81c;--bg:#101014;
---panel:#1b1b22;--panel2:#24242d;--text:#f5f5f5;--muted:#aaaab4;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-header{
-background:#15151b;border-bottom:3px solid var(--gold);
-padding:18px 5%;display:flex;justify-content:space-between;
-align-items:center;gap:15px;flex-wrap:wrap
-}
-.brand{font-size:28px;font-weight:900;letter-spacing:1px}
-.brand span{color:var(--gold)}
-.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-select,.x-button{
-padding:10px 13px;border-radius:6px;border:1px solid #444;
-background:#24242c;color:white;font-weight:bold
-}
+:root{--wine:#860038;--gold:#ffb81c;--bg:#101014;--panel:#1b1b22;--panel2:#24242d;--text:#f5f5f5;--muted:#aaaab4}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+header{background:#15151b;border-bottom:3px solid var(--gold);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.brand{font-size:28px;font-weight:900;letter-spacing:1px}.brand span{color:var(--gold)}.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+select,.x-button{padding:10px 13px;border-radius:6px;border:1px solid #444;background:#24242c;color:white;font-weight:bold}
 .x-button{background:var(--wine);border-color:var(--gold);text-decoration:none}
-nav{
-display:flex;justify-content:center;flex-wrap:wrap;gap:6px;
-padding:13px;background:#202027;position:sticky;top:0;z-index:10
-}
-nav a{
-color:white;text-decoration:none;padding:10px 13px;
-font-size:13px;font-weight:bold;border-radius:5px
-}
-nav a:hover{background:var(--wine);color:var(--gold)}
-.hero{
-min-height:340px;padding:75px 8%;text-align:center;
-background:linear-gradient(120deg,#350018,#860038 48%,#17171d);
-border-bottom:1px solid #333
-}
-.hero h1{font-size:clamp(38px,7vw,65px);margin:0 0 15px;font-weight:900}
-.hero h1 span{color:var(--gold)}
-.hero p{color:#ddd;font-size:18px;max-width:720px;margin:auto;line-height:1.6}
-.section{max-width:1200px;margin:auto;padding:55px 22px;scroll-margin-top:65px}
-.section h2{font-size:29px;border-left:5px solid var(--gold);padding-left:14px;margin-bottom:20px}
-.intro{color:var(--muted);line-height:1.7;margin-bottom:25px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.card{background:var(--panel);border:1px solid #33333d;border-radius:9px;padding:23px}
-.card h3{color:var(--gold);margin-top:0}
-.card p{color:var(--muted);line-height:1.6}
-.content-area{
-background:var(--panel);border:1px solid #33333d;
-border-radius:9px;padding:25px;color:var(--muted);line-height:1.8
-}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;padding:13px;background:#202027;position:sticky;top:0;z-index:10}
+nav a{color:white;text-decoration:none;padding:10px 13px;font-size:13px;font-weight:bold;border-radius:5px}nav a:hover{background:var(--wine);color:var(--gold)}
+.hero{min-height:340px;padding:75px 8%;text-align:center;background:linear-gradient(120deg,#350018,#860038 48%,#17171d);border-bottom:1px solid #333}
+.hero h1{font-size:clamp(38px,7vw,65px);margin:0 0 15px;font-weight:900}.hero h1 span{color:var(--gold)}.hero p{color:#ddd;font-size:18px;max-width:720px;margin:auto;line-height:1.6}
+.section{max-width:1200px;margin:auto;padding:55px 22px;scroll-margin-top:65px}.section h2{font-size:29px;border-left:5px solid var(--gold);padding-left:14px;margin-bottom:20px}
+.intro{color:var(--muted);line-height:1.7;margin-bottom:25px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card,.content-area,.auth-box,.prediction-card,.calendar-card,.ranking-box,.admin-box{background:var(--panel);border:1px solid #33333d;border-radius:9px;padding:22px;margin-bottom:18px}
+.card h3,.section-subtitle,.prediction-card h3,.calendar-card h3{color:var(--gold);margin-top:0}.card p,.content-area{color:var(--muted);line-height:1.7}
 .divider{border:0;border-top:1px solid #303039;max-width:1150px}
-.roster-tools{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
-.roster-tools input,.roster-tools select{
-background:var(--panel2);color:white;border:1px solid #444;
-border-radius:6px;padding:12px
-}
-.roster-grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px
-}
-.player-card{
-background:linear-gradient(160deg,#24242d,#17171c);
-border:1px solid #393943;border-radius:12px;overflow:hidden;
-transition:transform .2s,border-color .2s
-}
-.player-card:hover{transform:translateY(-4px);border-color:var(--gold)}
-.player-top{
-height:220px;position:relative;
-background:linear-gradient(135deg,#550024,#860038 60%,#26232a);
-overflow:hidden
-}
-.player-photo{
-width:100%;height:100%;object-fit:cover;object-position:center 18%;
-display:block
-}
-.player-number{
-position:absolute;left:12px;bottom:10px;
-font-size:35px;font-weight:900;color:white;
-background:rgba(134,0,56,.88);border:1px solid var(--gold);
-border-radius:7px;padding:5px 12px;text-shadow:1px 2px 3px #000
-}
-.player-position{
-position:absolute;right:12px;bottom:13px;
-color:var(--gold);font-size:11px;font-weight:bold;
-text-align:right;text-shadow:1px 2px 4px #000
-}
-.player-info{padding:18px}
-.player-info h3{margin:0 0 7px;font-size:20px}
-.player-info .height{color:var(--muted);font-size:13px}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:16px}
-.stat{background:#111116;border-radius:6px;padding:9px 5px;text-align:center}
-.stat strong{display:block;color:var(--gold);font-size:18px}
-.stat small{color:var(--muted);font-size:10px}
-.player-extra{
-border-top:1px solid #363640;margin-top:14px;padding-top:12px;
-color:var(--muted);font-size:12px;line-height:1.8
-}
-.player-extra strong{color:white}
-.no-stats{color:#e7c77b;font-size:12px;margin-top:12px}
-.table-wrap{overflow-x:auto}
-.stats-table{
-width:100%;border-collapse:collapse;min-width:850px;
-background:var(--panel);border-radius:8px;overflow:hidden
-}
-.stats-table th,.stats-table td{
-padding:12px 10px;border-bottom:1px solid #363640;
-text-align:center;font-size:13px
-}
-.stats-table th{background:var(--wine);color:white}
-.stats-table td:first-child{text-align:left;font-weight:bold}
-.stats-table tr:hover{background:#292933}
-.note{color:var(--muted);font-size:12px;line-height:1.7;margin-top:15px}
-.game-result{
-background:linear-gradient(130deg,#350018,#22222a);
-border:1px solid var(--gold);border-radius:10px;padding:24px;text-align:center
-}
-.score{font-size:38px;font-weight:900;margin:12px 0}
-.score span{color:var(--gold)}
-footer{
-text-align:center;padding:35px 20px;background:#15151b;
-border-top:3px solid var(--gold);color:var(--muted);line-height:1.7
-}
-footer strong{color:var(--gold)}
-footer a{color:var(--gold)}
-
-/* NUEVO: usuarios, calendario, predicciones y ranking */
-.auth-box,.prediction-card,.calendar-card,.ranking-box{
-background:var(--panel);border:1px solid #393943;border-radius:12px;
-padding:22px;margin-bottom:18px
-}
-.auth-grid{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px
-}
-.form-control{
-width:100%;padding:13px;border-radius:7px;border:1px solid #454550;
-background:#111116;color:white;margin:7px 0;font-size:14px
-}
-.primary-btn,.secondary-btn{
-border:0;border-radius:7px;padding:12px 17px;font-weight:bold;
-cursor:pointer;margin:6px 5px 6px 0
-}
-.primary-btn{background:var(--gold);color:#171717}
-.secondary-btn{background:var(--wine);color:white;border:1px solid var(--gold)}
-.primary-btn:disabled,.secondary-btn:disabled{opacity:.5;cursor:not-allowed}
-.status-message{padding:12px;border-radius:7px;margin-top:12px;line-height:1.5}
-.status-ok{background:#123c28;color:#a7f0c3}
-.status-error{background:#481b25;color:#ffc1ce}
-.status-info{background:#292933;color:#ddd}
-.account-bar{
-display:flex;justify-content:space-between;align-items:center;
-gap:12px;flex-wrap:wrap;background:#292933;padding:14px;border-radius:8px
-}
-.account-bar strong{color:var(--gold)}
-.section-subtitle{color:var(--gold);margin-top:0}
-.prediction-card h3,.calendar-card h3{color:var(--gold)}
-.prediction-card label{display:block;margin-top:12px;color:#ddd;font-size:13px}
-.prediction-card select{width:100%;margin-top:6px}
-.game-meta{color:var(--muted);font-size:13px}
-.prediction-status{font-size:13px;color:#e7c77b;margin-top:10px}
-.ranking-table{width:100%;border-collapse:collapse}
-.ranking-table th,.ranking-table td{
-padding:13px 10px;border-bottom:1px solid #363640;text-align:left
-}
-.ranking-table th{background:var(--wine)}
-.ranking-table td:last-child{text-align:right;color:var(--gold);font-weight:bold}
-.rank-number{color:var(--gold);font-weight:900}
-.empty-message{color:var(--muted);padding:15px 0}
-@media(max-width:600px){
-header{justify-content:center;text-align:center}
-.brand{width:100%}
-nav{gap:2px}
-nav a{padding:9px 7px;font-size:11px}
-.hero{padding:60px 20px}
-.section{padding:40px 15px}
-.player-top{height:210px}
-}
+.roster-tools{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.roster-tools input,.roster-tools select{background:var(--panel2);color:white;border:1px solid #444;border-radius:6px;padding:12px}
+.roster-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}
+.player-card{background:linear-gradient(160deg,#24242d,#17171c);border:1px solid #393943;border-radius:12px;overflow:hidden}
+.player-top{height:220px;position:relative;background:linear-gradient(135deg,#550024,#860038 60%,#26232a);overflow:hidden}
+.player-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
+.player-number{position:absolute;left:12px;bottom:10px;font-size:35px;font-weight:900;color:white;background:rgba(134,0,56,.88);border:1px solid var(--gold);border-radius:7px;padding:5px 12px}
+.player-position{position:absolute;right:12px;bottom:13px;color:var(--gold);font-size:11px;font-weight:bold;text-align:right;text-shadow:1px 2px 4px #000}
+.player-info{padding:18px}.player-info h3{margin:0 0 7px;font-size:20px}.height,.game-meta,.note{color:var(--muted);font-size:13px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:16px}.stat{background:#111116;border-radius:6px;padding:9px 5px;text-align:center}.stat strong{display:block;color:var(--gold);font-size:18px}.stat small{color:var(--muted);font-size:10px}
+.player-extra{border-top:1px solid #363640;margin-top:14px;padding-top:12px;color:var(--muted);font-size:12px;line-height:1.8}.player-extra strong{color:white}
+.table-wrap{overflow-x:auto}.stats-table{width:100%;border-collapse:collapse;min-width:850px;background:var(--panel);border-radius:8px;overflow:hidden}
+.stats-table th,.stats-table td{padding:12px 10px;border-bottom:1px solid #363640;text-align:center;font-size:13px}.stats-table th{background:var(--wine);color:white}.stats-table td:first-child{text-align:left;font-weight:bold}
+.game-result{background:linear-gradient(130deg,#350018,#22222a);border:1px solid var(--gold);border-radius:10px;padding:24px;text-align:center}.score{font-size:38px;font-weight:900;margin:12px 0}.score span{color:var(--gold)}
+footer{text-align:center;padding:35px 20px;background:#15151b;border-top:3px solid var(--gold);color:var(--muted);line-height:1.7}footer strong,footer a{color:var(--gold)}
+.auth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.form-control{width:100%;padding:13px;border-radius:7px;border:1px solid #454550;background:#111116;color:white;margin:7px 0;font-size:14px}
+.primary-btn,.secondary-btn{border:0;border-radius:7px;padding:12px 17px;font-weight:bold;cursor:pointer;margin:6px 5px 6px 0}.primary-btn{background:var(--gold);color:#171717}.secondary-btn{background:var(--wine);color:white;border:1px solid var(--gold)}
+.status-message{padding:12px;border-radius:7px;margin-top:12px;line-height:1.5}.status-ok{background:#123c28;color:#a7f0c3}.status-error{background:#481b25;color:#ffc1ce}.status-info{background:#292933;color:#ddd}
+.account-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#292933;padding:14px;border-radius:8px}.account-bar strong{color:var(--gold)}
+.prediction-card label{display:block;margin-top:12px;color:#ddd;font-size:13px}.prediction-card select{width:100%;margin-top:6px}.prediction-status{font-size:13px;color:#e7c77b;margin-top:10px}
+.ranking-table{width:100%;border-collapse:collapse}.ranking-table th,.ranking-table td{padding:13px 10px;border-bottom:1px solid #363640;text-align:left}.ranking-table th{background:var(--wine)}.ranking-table td:last-child{text-align:right;color:var(--gold);font-weight:bold}.rank-number{color:var(--gold);font-weight:900}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.admin-tabs button{background:#30303a;color:white;border:1px solid #555;padding:10px;border-radius:6px}.admin-tabs button.active{background:var(--wine);border-color:var(--gold)}
+.admin-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.admin-form textarea{min-height:95px}.admin-item{background:#111116;border:1px solid #383842;border-radius:8px;padding:13px;margin:10px 0;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.hidden{display:none!important}.note{line-height:1.7;margin-top:15px}
+@media(max-width:600px){header{justify-content:center;text-align:center}.brand{width:100%}nav{gap:2px}nav a{padding:9px 7px;font-size:11px}.hero{padding:60px 20px}.section{padding:40px 15px}.player-top{height:210px}}
 </style>
 </head>
-
 <body>
-<header>
-<div class="brand">CAVS <span>LATAM</span></div>
-<div class="header-actions">
-<select id="language" onchange="changeLanguage()">
-<option value="es">🇪🇸 Español</option>
-<option value="pt">🇧🇷 Português</option>
-<option value="en">🇺🇸 English</option>
-</select>
-<a class="x-button" href="https://x.com/cavs_latamm" target="_blank" rel="noopener noreferrer">𝕏 SEGUIR</a>
-</div>
-</header>
-
+<header><div class="brand">CAVS <span>LATAM</span></div><div class="header-actions">
+<select id="language" onchange="changeLanguage()"><option value="es">🇪🇸 Español</option><option value="pt">🇧🇷 Português</option><option value="en">🇺🇸 English</option></select>
+<a class="x-button" href="https://x.com/cavs_latamm" target="_blank" rel="noopener noreferrer">𝕏 SEGUIR</a></div></header>
 <nav>
-<a href="#inicio">INICIO</a>
-<a href="#plantilla">PLANTILLA</a>
-<a href="#estadisticas">ESTADÍSTICAS</a>
-<a href="#partidos">PARTIDOS</a>
-<a href="#predicciones">PREDICCIONES</a>
-<a href="#ranking">RANKING</a>
-<a href="#historia">HISTORIA</a>
-<a href="#noticias">NOTICIAS</a>
+<a href="#inicio">INICIO</a><a href="#plantilla">PLANTILLA</a><a href="#estadisticas">ESTADÍSTICAS</a><a href="#partidos">PARTIDOS</a><a href="#predicciones">PREDICCIONES</a><a href="#ranking">RANKING</a><a href="#historia">HISTORIA</a><a href="#noticias">NOTICIAS</a><a href="#administracion" id="adminNav" class="hidden">ADMIN</a>
 </nav>
-
 <main>
-<section class="hero" id="inicio">
-<h1>CLEVELAND <span>CAVALIERS</span></h1>
-<p>La pasión de los Cavaliers en Latinoamérica. Noticias, análisis, estadísticas, partidos e historia de la franquicia.</p>
-</section>
-
-<section class="section">
-<h2>BIENVENIDOS A CAVS LATAM</h2>
-<p class="intro">Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers. Un sitio creado por aficionados para aficionados.</p>
-<div class="cards">
-<article class="card"><h3>Plantilla</h3><p>Conoce a los jugadores, sus perfiles y estadísticas.</p></article>
-<article class="card"><h3>Estadísticas</h3><p>Datos individuales, colectivos y análisis del equipo.</p></article>
-<article class="card"><h3>Partidos</h3><p>Calendario, resultados y análisis de cada encuentro.</p></article>
-<article class="card"><h3>Predicciones</h3><p>Participa y suma puntos acertando los resultados.</p></article>
-</div>
-</section>
-
+<section class="hero" id="inicio"><h1>CLEVELAND <span>CAVALIERS</span></h1><p id="homeIntro">La pasión de los Cavaliers en Latinoamérica. Noticias, análisis, estadísticas, partidos e historia de la franquicia.</p></section>
+<section class="section"><h2>BIENVENIDOS A CAVS LATAM</h2><p class="intro">Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers. Un sitio creado por aficionados para aficionados.</p><div class="cards">
+<article class="card"><h3>Plantilla</h3><p>Conoce a los jugadores, sus perfiles y estadísticas.</p></article><article class="card"><h3>Estadísticas</h3><p>Datos individuales, colectivos y análisis del equipo.</p></article><article class="card"><h3>Partidos</h3><p>Calendario, resultados y análisis de cada encuentro.</p></article><article class="card"><h3>Predicciones</h3><p>Participa y suma puntos acertando los resultados.</p></article></div></section>
 <hr class="divider">
-
-<section class="section" id="plantilla">
-<h2>PLANTILLA 2026-27</h2>
-<p class="intro">Conoce a los jugadores de Cleveland Cavaliers, sus dorsales, posiciones y estadísticas individuales.</p>
-<div class="roster-tools">
-<input id="playerSearch" type="search" placeholder="Buscar jugador..." oninput="filterPlayers()">
-<select id="positionFilter" onchange="filterPlayers()">
-<option value="all">Todas las posiciones</option>
-<option value="G">Bases y escoltas</option>
-<option value="F">Aleros y ala-pívots</option>
-<option value="C">Pívots</option>
-</select>
-</div>
-<div class="roster-grid" id="rosterGrid"></div>
-<p class="note">Las estadísticas son promedios por partido. Datos de la tabla original.</p>
-</section>
-
+<section class="section" id="plantilla"><h2>PLANTILLA 2026-27</h2><p class="intro">Conoce a los jugadores de Cleveland Cavaliers, sus dorsales, posiciones y estadísticas individuales.</p>
+<div class="roster-tools"><input id="playerSearch" type="search" placeholder="Buscar jugador..." oninput="filterPlayers()"><select id="positionFilter" onchange="filterPlayers()"><option value="all">Todas las posiciones</option><option value="G">Bases y escoltas</option><option value="F">Aleros y ala-pívots</option><option value="C">Pívots</option></select></div>
+<div class="roster-grid" id="rosterGrid"></div><p class="note">Las estadísticas son datos de la plantilla original y pueden requerir actualización.</p></section>
 <hr class="divider">
-
-<section class="section" id="estadisticas">
-<h2>ESTADÍSTICAS</h2>
-<p class="intro">Rendimiento individual de los Cavaliers en la temporada 2026-27.</p>
-<div class="table-wrap">
-<table class="stats-table">
-<thead><tr>
-<th>Jugador</th><th>N.º</th><th>PJ</th><th>PTS</th>
-<th>REB</th><th>AST</th><th>ROB</th><th>TAP</th>
-<th>TC%</th><th>3P%</th><th>TL%</th>
-</tr></thead>
-<tbody id="statsTableBody"></tbody>
-</table>
-</div>
-<p class="note">PJ: partidos jugados · PTS: puntos · REB: rebotes · AST: asistencias · ROB: robos · TAP: tapones.</p>
-</section>
-
+<section class="section" id="estadisticas"><h2>ESTADÍSTICAS</h2><p class="intro">Rendimiento individual de los Cavaliers en la temporada 2026-27.</p><div class="table-wrap"><table class="stats-table"><thead><tr><th>Jugador</th><th>N.º</th><th>PJ</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th><th>TC%</th><th>3P%</th><th>TL%</th></tr></thead><tbody id="statsTableBody"></tbody></table></div><p class="note">PJ: partidos jugados · PTS: puntos · REB: rebotes · AST: asistencias · ROB: robos · TAP: tapones.</p></section>
 <hr class="divider">
-
-<section class="section" id="partidos">
-<h2>PARTIDOS Y CALENDARIO</h2>
-<p class="intro">Calendario y resultados de Cleveland Cavaliers.</p>
-<div class="game-result">
-<h3>NEW YORK KNICKS vs CLEVELAND CAVALIERS</h3>
-<p>7 DE NOVIEMBRE DE 2026</p>
-<div class="score">109 <span>-</span> 97</div>
-<p>Victoria de New York Knicks</p>
-<p><strong>Donovan Mitchell:</strong> 37 puntos, 4 rebotes y 4 asistencias.</p>
-</div>
-<h3 class="section-subtitle" style="margin-top:28px">CALENDARIO DESDE SUPABASE</h3>
-<div id="calendarList"><p class="empty-message">Cargando calendario...</p></div>
-</section>
-
+<section class="section" id="partidos"><h2>PARTIDOS Y CALENDARIO</h2><p class="intro">Calendario y resultados de Cleveland Cavaliers.</p>
+<div class="game-result"><h3>NEW YORK KNICKS vs CLEVELAND CAVALIERS</h3><p>7 DE NOVIEMBRE DE 2026</p><div class="score">109 <span>-</span> 97</div><p>Victoria de New York Knicks</p><p><strong>Donovan Mitchell:</strong> 37 puntos, 4 rebotes y 4 asistencias.</p></div>
+<h3 class="section-subtitle" style="margin-top:28px">CALENDARIO DESDE SUPABASE</h3><div id="calendarList"><p class="note">Cargando calendario...</p></div></section>
+<hr class="divider"> <section class="section" id="predicciones"><h2>PREDICCIONES DE LOS AFICIONADOS</h2><p class="intro">Inicia sesión para elegir al ganador y al jugador destacado de cada partido.</p>
+<div class="auth-box"><h3 class="section-subtitle">TU CUENTA CAVS LATAM</h3><div id="authForms"><div class="auth-grid"><div><label>Nombre de usuario</label><input class="form-control" id="signupUsername" placeholder="Tu nombre de usuario"><label>Correo electrónico</label><input class="form-control" id="signupEmail" type="email" placeholder="tu correo"><label>Contraseña</label><input class="form-control" id="signupPassword" type="password" placeholder="Mínimo 6 caracteres"><button class="primary-btn" onclick="signUp()">CREAR CUENTA</button></div>
+<div><label>Correo electrónico</label><input class="form-control" id="loginEmail" type="email" placeholder="tu correo"><label>Contraseña</label><input class="form-control" id="loginPassword" type="password" placeholder="Tu contraseña"><button class="secondary-btn" onclick="signIn()">INICIAR SESIÓN</button></div></div></div>
+<div id="accountPanel" class="hidden"><div class="account-bar"><div>Sesión iniciada: <strong id="accountUsername"></strong></div><button class="secondary-btn" onclick="signOut()">CERRAR SESIÓN</button></div></div><div id="authMessage"></div></div>
+<h3 class="section-subtitle">PARTIDOS DISPONIBLES PARA PRONOSTICAR</h3><div id="predictionGames"><p class="note">Cargando partidos...</p></div><p class="note">Puntuación: 3 puntos por acertar el ganador y 2 puntos por acertar el mejor jugador. Participación gratuita y sin dinero.</p></section>
 <hr class="divider">
-
-<section class="section" id="predicciones">
-<h2>PREDICCIONES DE LOS AFICIONADOS</h2>
-<p class="intro">Inicia sesión para elegir al ganador y al jugador destacado de cada partido.</p>
-
-<div class="auth-box">
-<h3 class="section-subtitle">TU CUENTA CAVS LATAM</h3>
-<div id="authForms">
-<div class="auth-grid">
-<div>
-<label>Nombre de usuario</label>
-<input class="form-control" id="signupUsername" placeholder="Tu nombre de usuario">
-<label>Correo electrónico</label>
-<input class="form-control" id="signupEmail" type="email" placeholder="tu correo">
-<label>Contraseña</label>
-<input class="form-control" id="signupPassword" type="password" placeholder="Mínimo 6 caracteres">
-<button class="primary-btn" onclick="signUp()">CREAR CUENTA</button>
-</div>
-<div>
-<label>Correo electrónico</label>
-<input class="form-control" id="loginEmail" type="email" placeholder="tu correo">
-<label>Contraseña</label>
-<input class="form-control" id="loginPassword" type="password" placeholder="Tu contraseña">
-<button class="secondary-btn" onclick="signIn()">INICIAR SESIÓN</button>
-</div>
-</div>
-</div>
-
-<div id="accountPanel" style="display:none">
-<div class="account-bar">
-<div>Sesión iniciada: <strong id="accountUsername"></strong></div>
-<button class="secondary-btn" onclick="signOut()">CERRAR SESIÓN</button>
-</div>
-</div>
-<div id="authMessage"></div>
-</div>
-
-<h3 class="section-subtitle">PARTIDOS DISPONIBLES PARA PRONOSTICAR</h3>
-<div id="predictionGames">
-<p class="empty-message">Cargando partidos...</p>
-</div>
-<p class="note">Puntuación: 3 puntos por acertar el ganador y 2 puntos por acertar el mejor jugador. Participación gratuita, sin apuestas ni dinero.</p>
-</section>
-
+<section class="section" id="ranking"><h2>RANKING CAVS LATAM</h2><p class="intro">Clasificación de los participantes según sus aciertos.</p><div class="ranking-box"><div class="table-wrap"><table class="ranking-table"><thead><tr><th>POS.</th><th>USUARIO</th><th>PUNTOS</th></tr></thead><tbody id="rankingBody"><tr><td colspan="3">Cargando ranking...</td></tr></tbody></table></div><p class="note">Los puntos se actualizan cuando se registran los resultados oficiales de los partidos en Supabase.</p></div></section>
 <hr class="divider">
-
-<section class="section" id="ranking">
-<h2>RANKING CAVS LATAM</h2>
-<p class="intro">Clasificación de los participantes según sus aciertos.</p>
-<div class="ranking-box">
-<div class="table-wrap">
-<table class="ranking-table">
-<thead>
-<tr><th>POS.</th><th>USUARIO</th><th>PUNTOS</th></tr>
-</thead>
-<tbody id="rankingBody">
-<tr><td colspan="3">Cargando ranking...</td></tr>
-</tbody>
-</table>
-</div>
-<p class="note">Los puntos se actualizan cuando se registran los resultados oficiales de los partidos en Supabase.</p>
-</div>
-</section>
-
+<section class="section" id="historia"><h2>HISTORIA</h2><p class="intro">Un recorrido por el pasado y los momentos inolvidables de la franquicia.</p><div class="content-area" id="historyContent">Aquí agregaremos temporadas históricas, leyendas, récords, campeonatos, jugadores históricos y momentos importantes.</div></section>
 <hr class="divider">
-
-<section class="section" id="historia">
-<h2>HISTORIA</h2>
-<p class="intro">Un recorrido por el pasado y los momentos inolvidables de la franquicia.</p>
-<div class="content-area">Aquí agregaremos temporadas históricas, leyendas, récords, campeonatos, jugadores históricos y momentos importantes.</div>
-</section>
-
+<section class="section" id="noticias"><h2>NOTICIAS Y ANÁLISIS</h2><p class="intro">Actualidad, artículos, opiniones y análisis tácticos.</p><div id="newsList" class="content-area">Cargando noticias...</div></section>
 <hr class="divider">
-
-<section class="section" id="noticias">
-<h2>NOTICIAS Y ANÁLISIS</h2>
-<p class="intro">Actualidad, artículos, opiniones y análisis tácticos.</p>
-<div class="content-area">Aquí publicaremos noticias, artículos extensos, análisis de rendimiento y opiniones sobre Cleveland Cavaliers.</div>
-</section>
+<section class="section hidden" id="administracion"><h2>PANEL DE ADMINISTRACIÓN</h2><p class="intro">Gestiona noticias, partidos, plantilla y textos de la página desde aquí.</p><div class="admin-box"><div id="adminStatus" class="status-message status-info">Comprobando permisos...</div>
+<div id="adminTools" class="hidden"><div class="admin-tabs"><button class="active" onclick="showAdminTab('news',this)">Noticias</button><button onclick="showAdminTab('games',this)">Calendario</button><button onclick="showAdminTab('players',this)">Plantilla y estadísticas</button><button onclick="showAdminTab('content',this)">Página principal e historia</button></div>
+<div id="admin-news" class="admin-pane"><h3 class="section-subtitle">Crear noticia</h3><input id="newsTitle" class="form-control" placeholder="Título"><input id="newsImage" class="form-control" placeholder="URL de imagen (opcional)"><textarea id="newsSummary" class="form-control" placeholder="Resumen"></textarea><textarea id="newsBody" class="form-control" placeholder="Texto completo de la noticia"></textarea><button class="primary-btn" onclick="saveNews()">PUBLICAR NOTICIA</button><div id="adminNewsList"></div></div>
+<div id="admin-games" class="admin-pane hidden"><h3 class="section-subtitle">Agregar partido</h3><div class="admin-form"><input id="gameHome" class="form-control" value="Cleveland Cavaliers" placeholder="Equipo local"><input id="gameAway" class="form-control" placeholder="Equipo visitante"><input id="gameDate" class="form-control" type="datetime-local"><input id="gameWinner" class="form-control" placeholder="Ganador (dejar vacío si está pendiente)"><input id="gameMvp" class="form-control" placeholder="Mejor jugador"></div><button class="primary-btn" onclick="saveGame()">GUARDAR PARTIDO</button><div id="adminGamesList"></div></div>
+<div id="admin-players" class="admin-pane hidden"><h3 class="section-subtitle">Agregar o actualizar jugador</h3><div class="admin-form"><input id="playerName" class="form-control" placeholder="Nombre"><input id="playerNumber" class="form-control" type="number" placeholder="Dorsal"><select id="playerPosition" class="form-control"><option value="G">Base / escolta</option><option value="F">Alero / ala-pívot</option><option value="C">Pívot</option></select><input id="playerHeight" class="form-control" placeholder="Altura, ej. 1,98 m"><input id="playerPhoto" class="form-control" placeholder="ID de foto NBA (opcional)"><input id="playerPts" class="form-control" placeholder="PTS"><input id="playerReb" class="form-control" placeholder="REB"><input id="playerAst" class="form-control" placeholder="AST"><input id="playerStl" class="form-control" placeholder="ROB"><input id="playerBlk" class="form-control" placeholder="TAP"><input id="playerGp" class="form-control" placeholder="PJ"><input id="playerFg" class="form-control" placeholder="TC%"><input id="playerTp" class="form-control" placeholder="3P%"><input id="playerFt" class="form-control" placeholder="TL%"></div><button class="primary-btn" onclick="savePlayer()">GUARDAR JUGADOR</button><p class="note">Al guardar, el jugador se añade o actualiza en la tabla de Supabase. Los datos estadísticos deben ser revisados antes de publicarse.</p><div id="adminPlayersList"></div></div>
+<div id="admin-content" class="admin-pane hidden"><h3 class="section-subtitle">Editar textos de la web</h3><label>Texto principal</label><textarea id="editHome" class="form-control"></textarea><label>Historia</label><textarea id="editHistory" class="form-control"></textarea><button class="primary-btn" onclick="saveSiteContent()">GUARDAR CONTENIDO</button></div>
+</div></div></section>
 </main>
-
-<footer>
-<strong>CAVS LATAM</strong>
-<p>La comunidad de Cleveland Cavaliers en Latinoamérica.</p>
-<p>𝕏 <a href="https://x.com/cavs_latamm" target="_blank" rel="noopener noreferrer">@cavs_latamm</a></p>
-<small>Fan site independiente. No afiliado ni patrocinado por la NBA o Cleveland Cavaliers.</small>
-</footer>
+<footer><strong>CAVS LATAM</strong><p>La comunidad de Cleveland Cavaliers en Latinoamérica.</p><p>𝕏 <a href="https://x.com/cavs_latamm" target="_blank" rel="noopener noreferrer">@cavs_latamm</a></p><small>Fan site independiente. No afiliado ni patrocinado por la NBA o Cleveland Cavaliers.</small></footer>
 
 <script>
-// =====================================================
-// SUPABASE: CONFIGURACIÓN
-// =====================================================
-const SUPABASE_URL = "https://fowiffhfvazelowwismm.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_FGdi7i5OJZVnAz58Ebe96A_xkhfqXkb";
-
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
-
-let currentUser = null;
-let gamesCache = [];
-
-// =====================================================
-// PLANTILLA
-// =====================================================
-const players = [
+const SUPABASE_URL="https://fowiffhfvazelowwismm.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_FGdi7i5OJZVnAz58Ebe96A_xkhfqXkb";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+let currentUser=null, isAdmin=false, gamesCache=[], dbPlayers=[];
+const defaultPlayers=[
 {n:1,name:"James Harden",pos:"G",label:"Base",height:"1,93 m",photo:"201935",gp:9,pts:"16,7",reb:"5,3",ast:"5,9",stl:"0,8",blk:"0,4",fg:"37,7",tp:"36,9",ft:"83,3"},
 {n:3,name:"Thomas Bryant",pos:"C",label:"Pívot",height:"2,06 m",photo:"1628418",gp:4,pts:"9,0",reb:"2,0",ast:"0,0",stl:"0,0",blk:"0,3",fg:"47,6",tp:"41,7",ft:"78,6"},
 {n:4,name:"Evan Mobley",pos:"C",label:"Pívot",height:"2,11 m",photo:"1630596",gp:9,pts:"19,1",reb:"8,0",ast:"3,6",stl:"0,6",blk:"1,2",fg:"56,6",tp:"51,3",ft:"64,9"},
@@ -405,407 +116,46 @@ const players = [
 {n:77,name:"Norchad Omier",pos:"F",label:"Ala-pívot",height:"1,96 m",photo:"1641807",gp:1,pts:"0,0",reb:"2,0",ast:"1,0",stl:"0,0",blk:"0,0",fg:"—",tp:"—",ft:"—"},
 {n:88,name:"Ernest Udeh Jr.",pos:"C",label:"Pívot",height:"2,06 m",photo:"1643640",gp:"—",pts:"—",reb:"—",ast:"—",stl:"—",blk:"—",fg:"—",tp:"—",ft:"—"}
 ];
-
-function playerCard(p){
-const hasStats=p.gp!=="—";
-const photoUrl=`https://cdn.nba.com/headshots/nba/latest/260x190/${p.photo}.png`;
-return `
-<article class="player-card">
-<div class="player-top">
-<img class="player-photo" src="${photoUrl}" alt="Foto de ${p.name}" loading="lazy"
-onerror="this.onerror=null;this.src='https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg';this.style.objectFit='contain';this.style.padding='35px';">
-<div class="player-number">#${p.n}</div>
-<div class="player-position">${p.label.toUpperCase()}<br>CLEVELAND</div>
-</div>
-<div class="player-info">
-<h3>${p.name}</h3>
-<div class="height">${p.label} · ${p.height}</div>
-${hasStats?`
-<div class="stat-grid">
-<div class="stat"><strong>${p.pts}</strong><small>PTS</small></div>
-<div class="stat"><strong>${p.reb}</strong><small>REB</small></div>
-<div class="stat"><strong>${p.ast}</strong><small>AST</small></div>
-<div class="stat"><strong>${p.stl}</strong><small>ROB</small></div>
-<div class="stat"><strong>${p.blk}</strong><small>TAP</small></div>
-<div class="stat"><strong>${p.gp}</strong><small>PJ</small></div>
-</div>
-<div class="player-extra">
-<strong>TC:</strong> ${p.fg}% ·
-<strong>3P:</strong> ${p.tp}% ·
-<strong>TL:</strong> ${p.ft}%
-</div>`:`
-<div class="no-stats">Sin partidos registrados en la temporada consultada.</div>
-`}
-</div>
-</article>`;
-}
-
-function renderPlayers(list=players){
-document.getElementById("rosterGrid").innerHTML=list.map(playerCard).join("");
-document.getElementById("statsTableBody").innerHTML=list.map(p=>`
-<tr>
-<td>${p.name}</td><td>#${p.n}</td><td>${p.gp}</td>
-<td>${p.pts}</td><td>${p.reb}</td><td>${p.ast}</td>
-<td>${p.stl}</td><td>${p.blk}</td>
-<td>${p.fg}%</td><td>${p.tp}%</td><td>${p.ft}%</td>
-</tr>`).join("");
-}
-
-function filterPlayers(){
-const search=document.getElementById("playerSearch").value.toLowerCase();
-const position=document.getElementById("positionFilter").value;
-const filtered=players.filter(p=>
-p.name.toLowerCase().includes(search)&&
-(position==="all"||p.pos===position)
-);
-renderPlayers(filtered);
-}
-renderPlayers();
-
-// =====================================================
-// MENSAJES
-// =====================================================
-function showMessage(elementId,message,type="info"){
-const el=document.getElementById(elementId);
-el.innerHTML=`<div class="status-message status-${type}">${escapeHTML(message)}</div>`;
-}
-function escapeHTML(value){
-return String(value??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-}
-
-// =====================================================
-// REGISTRO E INICIO DE SESIÓN
-// =====================================================
-async function signUp(){
-const username=document.getElementById("signupUsername").value.trim();
-const email=document.getElementById("signupEmail").value.trim();
-const password=document.getElementById("signupPassword").value;
-
-if(!username||!email||!password){
-showMessage("authMessage","Completa tu nombre de usuario, correo y contraseña.","error");
-return;
-}
-if(password.length<6){
-showMessage("authMessage","La contraseña debe tener al menos 6 caracteres.","error");
-return;
-}
-
-const {data,error}=await db.auth.signUp({
-email,
-password,
-options:{data:{username}}
-});
-
-if(error){
-showMessage("authMessage",error.message,"error");
-return;
-}
-
-if(data.session){
-showMessage("authMessage","¡Cuenta creada! Ya puedes participar.","ok");
-}else{
-showMessage("authMessage","Cuenta creada. Revisa tu correo si Supabase solicita confirmar el registro y luego inicia sesión.","ok");
-}
-}
-
-async function signIn(){
-const email=document.getElementById("loginEmail").value.trim();
-const password=document.getElementById("loginPassword").value;
-
-if(!email||!password){
-showMessage("authMessage","Escribe tu correo y contraseña.","error");
-return;
-}
-
-const {error}=await db.auth.signInWithPassword({email,password});
-if(error){
-showMessage("authMessage",error.message,"error");
-return;
-}
-showMessage("authMessage","Sesión iniciada correctamente.","ok");
-}
-
-async function signOut(){
-const {error}=await db.auth.signOut();
-if(error){
-showMessage("authMessage",error.message,"error");
-return;
-}
-showMessage("authMessage","Has cerrado sesión.","info");
-}
-
-function updateAccountUI(){
-const forms=document.getElementById("authForms");
-const panel=document.getElementById("accountPanel");
-
-if(currentUser){
-forms.style.display="none";
-panel.style.display="block";
-const username=currentUser.user_metadata?.username||currentUser.email;
-document.getElementById("accountUsername").textContent=username;
-}else{
-forms.style.display="block";
-panel.style.display="none";
-}
-}
-
-// =====================================================
-// CALENDARIO
-// =====================================================
-function formatDate(dateString){
-const date=new Date(dateString);
-return new Intl.DateTimeFormat("es-CL",{
-dateStyle:"full",timeStyle:"short",timeZone:"America/Santiago"
-}).format(date)+" (Chile)";
-}
-
-function getOpponent(game){
-if(game.home_team==="Cleveland Cavaliers")return game.away_team;
-if(game.away_team==="Cleveland Cavaliers")return game.home_team;
-return game.home_team+" vs "+game.away_team;
-}
-
-async function loadGames(){
-const {data,error}=await db
-.from("games")
-.select("*")
-.order("starts_at",{ascending:true});
-
-if(error){
-document.getElementById("calendarList").innerHTML=
-`<p class="empty-message">No se pudo cargar el calendario: ${escapeHTML(error.message)}</p>`;
-document.getElementById("predictionGames").innerHTML=
-`<p class="empty-message">No se pudieron cargar los partidos.</p>`;
-return;
-}
-
-gamesCache=data||[];
-renderCalendar();
-renderPredictionGames();
-}
-
-function renderCalendar(){
-const container=document.getElementById("calendarList");
-if(!gamesCache.length){
-container.innerHTML='<p class="empty-message">Todavía no hay partidos cargados en el calendario. Agrega los partidos en la tabla games de Supabase.</p>';
-return;
-}
-
-container.innerHTML=gamesCache.map(game=>{
-const finished=!!game.actual_winner;
-return `
-<div class="calendar-card">
-<h3>${escapeHTML(game.home_team)} vs ${escapeHTML(game.away_team)}</h3>
-<p class="game-meta">${formatDate(game.starts_at)}</p>
-${finished?
-`<p>Ganador: <strong>${escapeHTML(game.actual_winner)}</strong></p>
-<p>Mejor jugador: <strong>${escapeHTML(game.actual_best_player||"No registrado")}</strong></p>`:
-`<p class="prediction-status">Partido pendiente</p>`}
-</div>`;
-}).join("");
-}
-
-// =====================================================
-// PREDICCIONES
-// =====================================================
-function renderPredictionGames(){
-const container=document.getElementById("predictionGames");
-const upcoming=gamesCache.filter(g=>
-!g.actual_winner && new Date(g.starts_at).getTime()>Date.now()
-);
-
-if(!upcoming.length){
-container.innerHTML='<p class="empty-message">No hay partidos futuros disponibles para pronosticar. Cuando cargues partidos en Supabase aparecerán aquí.</p>';
-return;
-}
-
-container.innerHTML=upcoming.map(game=>{
-const id=Number(game.id);
-const teams=[game.home_team,game.away_team];
-const winnerOptions=teams.map(team=>
-`<option value="${escapeHTML(team)}">${escapeHTML(team)}</option>`
-).join("");
-
-const playerOptions=players.map(p=>
-`<option value="${escapeHTML(p.name)}">${escapeHTML(p.name)}</option>`
-).join("");
-
-return `
-<div class="prediction-card">
-<h3>${escapeHTML(game.home_team)} vs ${escapeHTML(game.away_team)}</h3>
-<p class="game-meta">${formatDate(game.starts_at)}</p>
-<label for="winner-${id}">¿Quién ganará?</label>
-<select class="form-control" id="winner-${id}">
-<option value="">Selecciona al ganador</option>
-${winnerOptions}
-</select>
-<label for="best-${id}">¿Quién será el mejor jugador?</label>
-<select class="form-control" id="best-${id}">
-<option value="">Selecciona un jugador</option>
-${playerOptions}
-</select>
-<button class="primary-btn" onclick="savePrediction(${id})">GUARDAR PREDICCIÓN</button>
-<div id="prediction-message-${id}"></div>
-</div>`;
-}).join("");
-
-if(currentUser)loadMyPredictions();
-}
-
-async function savePrediction(gameId){
-if(!currentUser){
-showMessage("authMessage","Debes iniciar sesión para enviar una predicción.","error");
-document.getElementById("authMessage").scrollIntoView({behavior:"smooth"});
-return;
-}
-
-const game=gamesCache.find(g=>Number(g.id)===gameId);
-if(!game)return;
-
-if(new Date(game.starts_at).getTime()<=Date.now()){
-showMessage(`prediction-message-${gameId}`,"El plazo para pronosticar este partido ya terminó.","error");
-return;
-}
-
-const winner=document.getElementById(`winner-${gameId}`).value;
-const best=document.getElementById(`best-${gameId}`).value;
-
-if(!winner||!best){
-showMessage(`prediction-message-${gameId}`,"Selecciona el ganador y el mejor jugador.","error");
-return;
-}
-
-const payload={
-user_id:currentUser.id,
-game_id:gameId,
-predicted_winner:winner,
-predicted_best_player:best
-};
-
-const {error}=await db
-.from("predictions")
-.upsert(payload,{onConflict:"user_id,game_id"});
-
-if(error){
-showMessage(`prediction-message-${gameId}`,"No se pudo guardar: "+error.message,"error");
-return;
-}
-
-showMessage(`prediction-message-${gameId}`,"¡Predicción guardada correctamente! Puedes modificarla antes del inicio del partido.","ok");
-}
-
-async function loadMyPredictions(){
-if(!currentUser)return;
-
-const {data,error}=await db
-.from("predictions")
-.select("game_id,predicted_winner,predicted_best_player")
-.eq("user_id",currentUser.id);
-
-if(error)return;
-
-(data||[]).forEach(prediction=>{
-const winner=document.getElementById(`winner-${prediction.game_id}`);
-const best=document.getElementById(`best-${prediction.game_id}`);
-if(winner)winner.value=prediction.predicted_winner;
-if(best)best.value=prediction.predicted_best_player;
-});
-}
-
-// =====================================================
-// RANKING
-// =====================================================
-async function loadRanking(){
-const body=document.getElementById("rankingBody");
-
-const {data,error}=await db
-.from("profiles")
-.select("username,total_points")
-.order("total_points",{ascending:false})
-.limit(100);
-
-if(error){
-body.innerHTML=`<tr><td colspan="3">No se pudo cargar el ranking: ${escapeHTML(error.message)}</td></tr>`;
-return;
-}
-
-if(!data||!data.length){
-body.innerHTML='<tr><td colspan="3">Todavía no hay participantes en el ranking.</td></tr>';
-return;
-}
-
-body.innerHTML=data.map((profile,index)=>`
-<tr>
-<td class="rank-number">#${index+1}</td>
-<td>${escapeHTML(profile.username||"Usuario")}</td>
-<td>${Number(profile.total_points||0)} pts</td>
-</tr>
-`).join("");
-}
-
-// =====================================================
-// INICIALIZACIÓN Y ACTUALIZACIONES
-// =====================================================
-async function initializeApp(){
-const {data}=await db.auth.getSession();
-currentUser=data.session?.user||null;
-updateAccountUI();
-
-await Promise.all([
-loadGames(),
-loadRanking()
-]);
-
-}
-
-db.auth.onAuthStateChange((_event,session)=>{
-currentUser=session?.user||null;
-updateAccountUI();
-loadRanking();
-loadPredictionGamesAfterAuth();
-});
-
-async function loadPredictionGamesAfterAuth(){
-if(gamesCache.length)renderPredictionGames();
-}
-
+let players=[...defaultPlayers];function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function msg(id,text,type="info"){const el=document.getElementById(id);if(el)el.innerHTML=`<div class="status-message status-${type}">${esc(text)}</div>`;}
+function posLabel(pos){return pos==="G"?"Base / escolta":pos==="F"?"Alero / ala-pívot":"Pívot";}
+function playerCard(p){const photo=p.photo?`https://cdn.nba.com/headshots/nba/latest/260x190/${encodeURIComponent(p.photo)}.png`:"https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg";return `<article class="player-card"><div class="player-top"><img class="player-photo" src="${photo}" alt="Foto de ${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg';this.style.objectFit='contain';this.style.padding='35px'"><div class="player-number">#${esc(p.n)}</div><div class="player-position">${esc(p.label||posLabel(p.pos)).toUpperCase()}<br>CLEVELAND</div></div><div class="player-info"><h3>${esc(p.name)}</h3><div class="height">${esc(p.label||posLabel(p.pos))} · ${esc(p.height||"")}</div><div class="stat-grid"><div class="stat"><strong>${esc(p.pts??"—")}</strong><small>PTS</small></div><div class="stat"><strong>${esc(p.reb??"—")}</strong><small>REB</small></div><div class="stat"><strong>${esc(p.ast??"—")}</strong><small>AST</small></div><div class="stat"><strong>${esc(p.stl??"—")}</strong><small>ROB</small></div><div class="stat"><strong>${esc(p.blk??"—")}</strong><small>TAP</small></div><div class="stat"><strong>${esc(p.gp??"—")}</strong><small>PJ</small></div></div><div class="player-extra"><strong>TC:</strong> ${esc(p.fg??"—")}% · <strong>3P:</strong> ${esc(p.tp??"—")}% · <strong>TL:</strong> ${esc(p.ft??"—")}%</div></div></article>`;}
+function renderPlayers(list=players){document.getElementById("rosterGrid").innerHTML=list.map(playerCard).join("");document.getElementById("statsTableBody").innerHTML=list.map(p=>`<tr><td>${esc(p.name)}</td><td>#${esc(p.n)}</td><td>${esc(p.gp??"—")}</td><td>${esc(p.pts??"—")}</td><td>${esc(p.reb??"—")}</td><td>${esc(p.ast??"—")}</td><td>${esc(p.stl??"—")}</td><td>${esc(p.blk??"—")}</td><td>${esc(p.fg??"—")}%</td><td>${esc(p.tp??"—")}%</td><td>${esc(p.ft??"—")}%</td></tr>`).join("");}
+function filterPlayers(){const s=document.getElementById("playerSearch").value.toLowerCase(),p=document.getElementById("positionFilter").value;renderPlayers(players.filter(x=>x.name.toLowerCase().includes(s)&&(p==="all"||x.pos===p)));}
+function formatDate(d){return new Intl.DateTimeFormat("es-CL",{dateStyle:"full",timeStyle:"short",timeZone:"America/Santiago"}).format(new Date(d))+" (Chile)";}
+async function signUp(){const username=document.getElementById("signupUsername").value.trim(),email=document.getElementById("signupEmail").value.trim(),password=document.getElementById("signupPassword").value;if(!username||!email||password.length<6){msg("authMessage","Completa los campos. La contraseña debe tener al menos 6 caracteres.","error");return;}const {data,error}=await db.auth.signUp({email,password,options:{data:{username}}});if(error)msg("authMessage",error.message,"error");else msg("authMessage",data.session?"Cuenta creada. Ya puedes participar.":"Cuenta creada. Revisa tu correo si debes confirmar el registro.","ok");}
+async function signIn(){const email=document.getElementById("loginEmail").value.trim(),password=document.getElementById("loginPassword").value;if(!email||!password){msg("authMessage","Escribe tu correo y contraseña.","error");return;}const {error}=await db.auth.signInWithPassword({email,password});if(error)msg("authMessage",error.message,"error");else msg("authMessage","Sesión iniciada correctamente.","ok");}
+async function signOut(){const {error}=await db.auth.signOut();if(error)msg("authMessage",error.message,"error");else msg("authMessage","Has cerrado sesión.","info");}
+function updateAccountUI(){document.getElementById("authForms").classList.toggle("hidden",!!currentUser);document.getElementById("accountPanel").classList.toggle("hidden",!currentUser);if(currentUser)document.getElementById("accountUsername").textContent=currentUser.user_metadata?.username||currentUser.email;}
+async function checkAdmin(){isAdmin=false;if(currentUser){const {data,error}=await db.rpc("is_admin");isAdmin=!error&&data===true;}document.getElementById("adminNav").classList.toggle("hidden",!isAdmin);document.getElementById("administracion").classList.toggle("hidden",!isAdmin);if(isAdmin){msg("adminStatus","Acceso de administrador confirmado.","ok");document.getElementById("adminTools").classList.remove("hidden");await Promise.all([loadAdminNews(),loadAdminGames(),loadAdminPlayers(),loadSiteContent()]);}else{document.getElementById("adminTools").classList.add("hidden");}}
+async function loadPlayers(){const {data,error}=await db.from("players").select("*").order("number",{ascending:true});if(!error&&data&&data.length){dbPlayers=data;players=data.map(p=>({n:p.number,name:p.name,pos:p.position||"G",label:posLabel(p.position||"G"),height:p.height||"",photo:p.photo||"",...(p.stats||{})}));}renderPlayers();}
+async function loadGames(){const {data,error}=await db.from("games").select("*").order("starts_at",{ascending:true});if(error){document.getElementById("calendarList").textContent="No se pudo cargar el calendario: "+error.message;document.getElementById("predictionGames").textContent="No se pudieron cargar los partidos.";return;}gamesCache=data||[];renderCalendar();renderPredictionGames();}
+function renderCalendar(){const c=document.getElementById("calendarList");if(!gamesCache.length){c.innerHTML='<p class="note">Todavía no hay partidos cargados.</p>';return;}c.innerHTML=gamesCache.map(g=>`<div class="calendar-card"><h3>${esc(g.home_team)} vs ${esc(g.away_team)}</h3><p class="game-meta">${formatDate(g.starts_at)}</p>${g.actual_winner?`<p>Ganador: <strong>${esc(g.actual_winner)}</strong></p><p>Mejor jugador: <strong>${esc(g.actual_best_player||"No registrado")}</strong></p>`:'<p class="prediction-status">Partido pendiente</p>'}</div>`).join("");}
+function renderPredictionGames(){const c=document.getElementById("predictionGames"),upcoming=gamesCache.filter(g=>!g.actual_winner&&new Date(g.starts_at).getTime()>Date.now());if(!upcoming.length){c.innerHTML='<p class="note">No hay partidos futuros disponibles para pronosticar.</p>';return;}c.innerHTML=upcoming.map(g=>{const id=Number(g.id),teams=[g.home_team,g.away_team];return `<div class="prediction-card"><h3>${esc(g.home_team)} vs ${esc(g.away_team)}</h3><p class="game-meta">${formatDate(g.starts_at)}</p><label>¿Quién ganará?</label><select class="form-control" id="winner-${id}"><option value="">Selecciona al ganador</option>${teams.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join("")}</select><label>¿Quién será el mejor jugador?</label><select class="form-control" id="best-${id}"><option value="">Selecciona un jugador</option>${players.map(p=>`<option value="${esc(p.name)}">${esc(p.name)}</option>`).join("")}</select><button class="primary-btn" onclick="savePrediction(${id})">GUARDAR PREDICCIÓN</button><div id="prediction-message-${id}"></div></div>`;}).join("");if(currentUser)loadMyPredictions();}
+async function savePrediction(id){if(!currentUser){msg("authMessage","Debes iniciar sesión para enviar una predicción.","error");return;}const g=gamesCache.find(x=>Number(x.id)===id);if(!g||new Date(g.starts_at).getTime()<=Date.now()){msg(`prediction-message-${id}`,"El plazo para pronosticar terminó.","error");return;}const winner=document.getElementById(`winner-${id}`).value,best=document.getElementById(`best-${id}`).value;if(!winner||!best){msg(`prediction-message-${id}`,"Selecciona ganador y mejor jugador.","error");return;}const {error}=await db.from("predictions").upsert({user_id:currentUser.id,game_id:id,predicted_winner:winner,predicted_best_player:best},{onConflict:"user_id,game_id"});msg(`prediction-message-${id}`,error?error.message:"¡Predicción guardada! Puedes cambiarla antes del inicio.",error?"error":"ok");}
+async function loadMyPredictions(){if(!currentUser)return;const {data}=await db.from("predictions").select("game_id,predicted_winner,predicted_best_player").eq("user_id",currentUser.id);(data||[]).forEach(p=>{const w=document.getElementById(`winner-${p.game_id}`),b=document.getElementById(`best-${p.game_id}`);if(w)w.value=p.predicted_winner;if(b)b.value=p.predicted_best_player;});}
+async function loadRanking(){const {data,error}=await db.from("profiles").select("username,total_points").order("total_points",{ascending:false}).limit(100);const b=document.getElementById("rankingBody");if(error){b.innerHTML=`<tr><td colspan="3">${esc(error.message)}</td></tr>`;return;}if(!data?.length){b.innerHTML='<tr><td colspan="3">Todavía no hay participantes.</td></tr>';return;}b.innerHTML=data.map((p,i)=>`<tr><td class="rank-number">#${i+1}</td><td>${esc(p.username||"Usuario")}</td><td>${Number(p.total_points||0)} pts</td></tr>`).join("");}
+function showAdminTab(tab,button){document.querySelectorAll(".admin-pane").forEach(x=>x.classList.add("hidden"));document.getElementById("admin-"+tab).classList.remove("hidden");document.querySelectorAll(".admin-tabs button").forEach(x=>x.classList.remove("active"));button.classList.add("active");}
+async function loadAdminNews(){const {data,error}=await db.from("news").select("*").order("created_at",{ascending:false});const el=document.getElementById("adminNewsList");if(error){el.textContent=error.message;return;}el.innerHTML=(data||[]).map(n=>`<div class="admin-item"><span><strong>${esc(n.title)}</strong> ${n.published?"(publicada)":"(oculta)"}</span><span><button class="secondary-btn" onclick="toggleNews(${n.id},${!n.published})">${n.published?"Ocultar":"Publicar"}</button><button class="secondary-btn" onclick="deleteNews(${n.id})">Eliminar</button></span></div>`).join("")||"Todavía no hay noticias.";}
+async function saveNews(){const title=document.getElementById("newsTitle").value.trim(),summary=document.getElementById("newsSummary").value.trim(),body=document.getElementById("newsBody").value.trim(),image_url=document.getElementById("newsImage").value.trim();if(!title){alert("Escribe un título.");return;}const {error}=await db.from("news").insert({title,summary,body,image_url,published:true});if(error){alert("No se pudo publicar: "+error.message);return;}["newsTitle","newsSummary","newsBody","newsImage"].forEach(id=>document.getElementById(id).value="");await loadAdminNews();await loadNews();}
+async function toggleNews(id,published){const {error}=await db.from("news").update({published}).eq("id",id);if(error)alert(error.message);else{await loadAdminNews();await loadNews();}}
+async function deleteNews(id){if(!confirm("¿Eliminar esta noticia?"))return;const {error}=await db.from("news").delete().eq("id",id);if(error)alert(error.message);else{await loadAdminNews();await loadNews();}}
+async function loadNews(){const {data,error}=await db.from("news").select("id,title,summary,body,image_url,created_at").eq("published",true).order("created_at",{ascending:false});const el=document.getElementById("newsList");if(error){el.textContent="No se pudieron cargar las noticias.";return;}if(!data?.length){el.textContent="Aquí publicaremos noticias, artículos, análisis de rendimiento y opiniones sobre Cleveland Cavaliers.";return;}el.innerHTML=data.map(n=>`<article class="card">${n.image_url?`<img src="${esc(n.image_url)}" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:7px">`:""}<h3>${esc(n.title)}</h3><p>${esc(n.summary||"")}</p><p>${esc(n.body||"")}</p><small class="note">${n.created_at?formatDate(n.created_at):""}</small></article>`).join("");}
+async function loadAdminGames(){const el=document.getElementById("adminGamesList");el.innerHTML=gamesCache.map(g=>`<div class="admin-item"><span><strong>${esc(g.home_team)} vs ${esc(g.away_team)}</strong><br><small>${formatDate(g.starts_at)}</small></span><button class="secondary-btn" onclick="deleteGame(${g.id})">Eliminar</button></div>`).join("")||"No hay partidos.";}
+async function saveGame(){const home_team=document.getElementById("gameHome").value.trim(),away_team=document.getElementById("gameAway").value.trim(),date=document.getElementById("gameDate").value,actual_winner=document.getElementById("gameWinner").value.trim()||null,actual_best_player=document.getElementById("gameMvp").value.trim()||null;if(!home_team||!away_team||!date){alert("Completa equipos y fecha.");return;}const {error}=await db.from("games").insert({home_team,away_team,starts_at:new Date(date).toISOString(),actual_winner,actual_best_player});if(error){alert("No se pudo guardar: "+error.message);return;}["gameAway","gameDate","gameWinner","gameMvp"].forEach(id=>document.getElementById(id).value="");await loadGames();await loadAdminGames();}
+async function deleteGame(id){if(!confirm("¿Eliminar este partido?"))return;const {error}=await db.from("games").delete().eq("id",id);if(error)alert(error.message);else{await loadGames();await loadAdminGames();}}
+async function loadAdminPlayers(){const {data,error}=await db.from("players").select("*").order("number",{ascending:true});const el=document.getElementById("adminPlayersList");if(error){el.textContent=error.message;return;}el.innerHTML=(data||[]).map(p=>`<div class="admin-item"><strong>#${esc(p.number)} ${esc(p.name)}</strong><button class="secondary-btn" onclick="deletePlayer(${p.id})">Eliminar</button></div>`).join("")||"La tabla players todavía no tiene registros. La plantilla original seguirá mostrándose hasta que agregues jugadores aquí.";}
+async function savePlayer(){const name=document.getElementById("playerName").value.trim(),number=Number(document.getElementById("playerNumber").value),position=document.getElementById("playerPosition").value,height=document.getElementById("playerHeight").value.trim(),photo=document.getElementById("playerPhoto").value.trim();if(!name||!number){alert("Escribe nombre y dorsal.");return;}const stats={pts:document.getElementById("playerPts").value||"—",reb:document.getElementById("playerReb").value||"—",ast:document.getElementById("playerAst").value||"—",stl:document.getElementById("playerStl").value||"—",blk:document.getElementById("playerBlk").value||"—",gp:document.getElementById("playerGp").value||"—",fg:document.getElementById("playerFg").value||"—",tp:document.getElementById("playerTp").value||"—",ft:document.getElementById("playerFt").value||"—"};const {error}=await db.from("players").insert({name,number,position,height,photo,stats});if(error){alert("No se pudo guardar: "+error.message);return;}document.querySelectorAll("#admin-players input").forEach(x=>x.value="");await loadPlayers();await loadAdminPlayers();renderPredictionGames();}
+async function deletePlayer(id){if(!confirm("¿Eliminar este jugador de la plantilla administrada?"))return;const {error}=await db.from("players").delete().eq("id",id);if(error)alert(error.message);else{await loadPlayers();await loadAdminPlayers();renderPredictionGames();}}
+async function loadSiteContent(){const {data}=await db.from("site_content").select("*").in("content_key",["home_intro","history"]);(data||[]).forEach(x=>{const value=typeof x.content_value==="string"?x.content_value:JSON.stringify(x.content_value);if(x.content_key==="home_intro")document.getElementById("editHome").value=value;if(x.content_key==="history")document.getElementById("editHistory").value=value;});}
+async function saveSiteContent(){const items=[{content_key:"home_intro",content_value:document.getElementById("editHome").value},{content_key:"history",content_value:document.getElementById("editHistory").value}];for(const item of items){const {error}=await db.from("site_content").upsert(item,{onConflict:"content_key"});if(error){alert("No se pudo guardar el contenido: "+error.message);return;}}document.getElementById("homeIntro").textContent=items[0].content_value;document.getElementById("historyContent").textContent=items[1].content_value;alert("Contenido actualizado.");}
+async function loadPublicContent(){const {data}=await db.from("site_content").select("*").in("content_key",["home_intro","history"]);(data||[]).forEach(x=>{let v=x.content_value;if(typeof v!=="string")v=JSON.stringify(v);if(x.content_key==="home_intro")document.getElementById("homeIntro").textContent=v;if(x.content_key==="history")document.getElementById("historyContent").textContent=v;});}
+const translations={es:["INICIO","PLANTILLA","ESTADÍSTICAS","PARTIDOS","PREDICCIONES","RANKING","HISTORIA","NOTICIAS"],pt:["INÍCIO","ELENCO","ESTATÍSTICAS","JOGOS","PALPITES","RANKING","HISTÓRIA","NOTÍCIAS"],en:["HOME","ROSTER","STATISTICS","GAMES","PREDICTIONS","RANKING","HISTORY","NEWS"]};
+function changeLanguage(){const lang=document.getElementById("language").value;document.documentElement.lang=lang;document.querySelectorAll("nav a:not(#adminNav)").forEach((a,i)=>{if(translations[lang][i])a.textContent=translations[lang][i];});}
+async function initializeApp(){const {data}=await db.auth.getSession();currentUser=data.session?.user||null;updateAccountUI();await Promise.all([loadPlayers(),loadGames(),loadRanking(),loadNews(),loadPublicContent()]);await checkAdmin();}
+db.auth.onAuthStateChange(async(_event,session)=>{currentUser=session?.user||null;updateAccountUI();await checkAdmin();loadRanking();if(gamesCache.length)renderPredictionGames();});
 initializeApp();
-
-// Actualizar el ranking y calendario periódicamente mientras la página está abierta.
-setInterval(()=>{
-loadRanking();
-loadGames();
-},60000);
-
-// =====================================================
-// IDIOMAS: SELECTOR ORIGINAL
-// =====================================================
-const translations={
-es:{
-navHome:"INICIO",navRoster:"PLANTILLA",navStats:"ESTADÍSTICAS",
-navGames:"PARTIDOS",navHistory:"HISTORIA",navNews:"NOTICIAS"
-},
-pt:{
-navHome:"INÍCIO",navRoster:"ELENCO",navStats:"ESTATÍSTICAS",
-navGames:"JOGOS",navHistory:"HISTÓRIA",navNews:"NOTÍCIAS"
-},
-en:{
-navHome:"HOME",navRoster:"ROSTER",navStats:"STATISTICS",
-navGames:"GAMES",navHistory:"HISTORY",navNews:"NEWS"
-}
-};
-
-function changeLanguage(){
-const lang=document.getElementById("language").value;
-document.documentElement.lang=lang;
-document.querySelectorAll("nav a").forEach((el,index)=>{
-const keys=["navHome","navRoster","navStats","navGames",null,null,"navHistory","navNews"];
-const key=keys[index];
-if(key&&translations[lang][key])el.textContent=translations[lang][key];
-});
-}
+setInterval(()=>{loadRanking();loadGames();loadNews();},60000);
 </script>
 </body>
 </html>
