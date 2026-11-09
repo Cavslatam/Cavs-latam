@@ -59,4 +59,629 @@ footer{text-align:center;padding:35px 20px;background:#15151b;border-top:3px sol
 <section class="hero" id="inicio"><h1>CLEVELAND <span>CAVALIERS</span></h1><p id="homeIntro">La pasión de los Cavaliers en Latinoamérica. Noticias, análisis, estadísticas, partidos e historia de la franquicia.</p></section>
 <section class="section"><h2>BIENVENIDOS A CAVS LATAM</h2><p class="intro">Tu espacio dedicado a seguir cada detalle de Cleveland Cavaliers. Un sitio creado por aficionados para aficionados.</p><div class="cards">
 <article class="card"><h3>Plantilla</h3><p>Conoce a los jugadores, sus perfiles y estadísticas.</p></article><article class="card"><h3>Estadísticas</h3><p>Datos individuales, colectivos y análisis del equipo.</p></article><article class="card"><h3>Partidos</h3><p>Calendario, resultados y análisis de cada encuentro.</p></article><article class="card"><h3>Predicciones</h3><p>Participa y suma puntos acertando los resultados.</p></article></div></section>
+<hr class="divider"> <section class="section" id="plantilla">
+<h2>PLANTILLA</h2>
+<p class="intro">Jugadores de Cleveland Cavaliers.</p>
+<div id="rosterGrid" class="roster-grid"><p>Cargando plantilla...</p></div>
+</section>
+
 <hr class="divider">
+
+<section class="section" id="estadisticas">
+<h2>ESTADÍSTICAS</h2>
+<p class="intro">Estadísticas individuales de los jugadores.</p>
+<div class="table-wrap">
+<table class="stats-table">
+<thead><tr><th>JUGADOR</th><th>PTS</th><th>REB</th><th>AST</th><th>ROB</th><th>TAP</th></tr></thead>
+<tbody id="statsBody"><tr><td colspan="6">Cargando estadísticas...</td></tr></tbody>
+</table>
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="partidos">
+<h2>RÉCORD Y PRÓXIMOS PARTIDOS</h2>
+<div class="game-result">
+<p class="game-meta">RÉCORD DE LA TEMPORADA</p>
+<div class="score"><span id="recordWins">0</span> - <span id="recordLosses">0</span></div>
+<p id="recordLabel">Victorias - Derrotas</p>
+</div>
+<h3 class="section-subtitle" style="margin-top:30px">PRÓXIMOS PARTIDOS</h3>
+<div id="upcomingGames" class="cards"><p>Cargando calendario...</p></div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="clave">
+<h2>LA CLAVE DEL PARTIDO</h2>
+<p class="intro">El jugador que puede marcar la diferencia en el próximo encuentro.</p>
+<div class="content-area">
+<h3 id="keyPlayer" style="color:var(--gold)">Por definir</h3>
+<p id="keyExplanation">El análisis del próximo partido aparecerá aquí.</p>
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="anteriores">
+<h2>RESULTADOS ANTERIORES</h2>
+<p class="intro">Todos los partidos disputados por Cleveland Cavaliers.</p>
+<div id="previousGames" class="cards"><p>Cargando resultados...</p></div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="predicciones">
+<h2>PREDICCIONES</h2>
+<p class="intro">Inicia sesión para participar en las predicciones de CAVS LATAM.</p>
+<div id="authArea" class="auth-box">
+<div id="authForms">
+<div class="auth-grid">
+<div>
+<h3 class="section-subtitle">Iniciar sesión</h3>
+<input class="form-control" id="loginEmail" type="email" placeholder="Correo electrónico">
+<input class="form-control" id="loginPassword" type="password" placeholder="Contraseña">
+<button class="primary-btn" onclick="login()">INICIAR SESIÓN</button>
+</div>
+<div>
+<h3 class="section-subtitle">Crear cuenta</h3>
+<input class="form-control" id="signupEmail" type="email" placeholder="Correo electrónico">
+<input class="form-control" id="signupPassword" type="password" placeholder="Contraseña (mínimo 6 caracteres)">
+<button class="secondary-btn" onclick="signup()">REGISTRARME</button>
+</div>
+</div>
+<div id="authMessage"></div>
+</div>
+<div id="loggedArea" class="hidden">
+<div class="account-bar">
+<div>Sesión iniciada: <strong id="loggedEmail"></strong></div>
+<button class="secondary-btn" onclick="logout()">CERRAR SESIÓN</button>
+</div>
+<h3 class="section-subtitle" style="margin-top:25px">PRÓXIMO PARTIDO</h3>
+<div id="predictionArea"></div>
+<div id="predictionMessage"></div>
+</div>
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="ranking">
+<h2>RANKING DE PREDICCIONES</h2>
+<p class="intro">Los aficionados suman puntos por sus aciertos.</p>
+<div class="ranking-box table-wrap">
+<table class="ranking-table">
+<thead><tr><th>#</th><th>USUARIO</th><th>PUNTOS</th></tr></thead>
+<tbody id="rankingBody"><tr><td colspan="3">Cargando ranking...</td></tr></tbody>
+</table>
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="historia">
+<h2>HISTORIA</h2>
+<div class="content-area" id="historyContent">
+Cleveland Cavaliers es una franquicia de la NBA fundada en 1970. Su historia está marcada por grandes jugadores, momentos inolvidables y el apoyo de sus aficionados.
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="noticias">
+<h2>ÚLTIMAS NOTICIAS</h2>
+<p class="intro">Toda la actualidad de Cleveland Cavaliers en español.</p>
+<div id="newsGrid" class="cards"><p>Cargando noticias...</p></div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="administracion">
+<h2>ADMINISTRACIÓN</h2>
+<p class="intro">Panel privado para administrar el contenido de CAVS LATAM.</p>
+<div class="admin-box">
+<div id="adminLogin">
+<h3 class="section-subtitle">Acceso de administrador</h3>
+<input class="form-control" id="adminEmail" type="email" placeholder="Correo electrónico">
+<input class="form-control" id="adminPassword" type="password" placeholder="Contraseña">
+<button class="primary-btn" onclick="adminLogin()">ENTRAR AL PANEL</button>
+<div id="adminMessage"></div>
+</div>
+
+<div id="adminPanel" class="hidden">
+<div class="account-bar">
+<strong>Panel de administración</strong>
+<button class="secondary-btn" onclick="adminLogout()">CERRAR SESIÓN</button>
+</div>
+
+<div class="admin-tabs" style="margin-top:20px">
+<button class="active" onclick="showAdminTab('admin-news',this)">Noticias</button>
+<button onclick="showAdminTab('admin-games',this)">Partidos</button>
+<button onclick="showAdminTab('admin-team',this)">Récord y clave</button>
+<button onclick="showAdminTab('admin-players',this)">Plantilla</button>
+<button onclick="showAdminTab('admin-content',this)">Contenido</button>
+</div>
+
+<div id="admin-news" class="admin-pane">
+<h3 class="section-subtitle">Publicar noticia</h3>
+<div class="admin-form">
+<input class="form-control" id="newsTitle" placeholder="Título de la noticia">
+<input class="form-control" id="newsImage" placeholder="URL de imagen (opcional)">
+<input class="form-control" id="newsSummary" placeholder="Resumen">
+</div>
+<textarea class="form-control" id="newsBody" placeholder="Escribe el contenido de la noticia..."></textarea>
+<button class="primary-btn" onclick="publishNews()">PUBLICAR NOTICIA</button>
+<h3 class="section-subtitle" style="margin-top:25px">Noticias publicadas</h3>
+<div id="adminNewsList"></div>
+</div>
+
+<div id="admin-games" class="admin-pane hidden">
+<h3 class="section-subtitle">Agregar partido</h3>
+<div class="admin-form">
+<input class="form-control" id="gameHome" placeholder="Equipo local">
+<input class="form-control" id="gameAway" placeholder="Equipo visitante">
+<input class="form-control" id="gameDate" type="datetime-local">
+</div>
+<button class="primary-btn" onclick="addGame()">AGREGAR PARTIDO</button>
+<h3 class="section-subtitle" style="margin-top:25px">Administrar calendario y resultados</h3>
+<div id="adminGamesList"></div>
+</div>
+
+<div id="admin-team" class="admin-pane hidden">
+<h3 class="section-subtitle">Editar récord de Cleveland</h3>
+<p class="note">Actualiza manualmente las victorias y derrotas del equipo.</p>
+<div class="admin-form">
+<input class="form-control" id="editWins" type="number" min="0" placeholder="Victorias">
+<input class="form-control" id="editLosses" type="number" min="0" placeholder="Derrotas">
+</div>
+<button class="primary-btn" onclick="saveTeamRecord()">GUARDAR RÉCORD</button>
+
+<h3 class="section-subtitle" style="margin-top:30px">La clave del próximo partido</h3>
+<input class="form-control" id="editKeyPlayer" placeholder="Nombre del jugador">
+<textarea class="form-control" id="editKeyExplanation" placeholder="Explica por qué será importante en el partido..."></textarea>
+<button class="primary-btn" onclick="saveGameKey()">GUARDAR ANÁLISIS</button>
+<div id="teamAdminMessage"></div>
+</div>
+
+<div id="admin-players" class="admin-pane hidden">
+<h3 class="section-subtitle">Agregar jugador</h3>
+<div class="admin-form">
+<input class="form-control" id="playerName" placeholder="Nombre del jugador">
+<input class="form-control" id="playerNumber" type="number" placeholder="Número de camiseta">
+<input class="form-control" id="playerPosition" placeholder="Posición">
+<input class="form-control" id="playerHeight" placeholder="Altura">
+<input class="form-control" id="playerPhoto" placeholder="URL de foto">
+<input class="form-control" id="playerPoints" type="number" step="0.1" placeholder="Puntos por partido">
+<input class="form-control" id="playerRebounds" type="number" step="0.1" placeholder="Rebotes por partido">
+<input class="form-control" id="playerAssists" type="number" step="0.1" placeholder="Asistencias por partido">
+<input class="form-control" id="playerSteals" type="number" step="0.1" placeholder="Robos por partido">
+<input class="form-control" id="playerBlocks" type="number" step="0.1" placeholder="Tapones por partido">
+</div>
+<button class="primary-btn" onclick="addPlayer()">AGREGAR JUGADOR</button>
+<h3 class="section-subtitle" style="margin-top:25px">Jugadores cargados</h3>
+<div id="adminPlayersList"></div>
+</div>
+
+<div id="admin-content" class="admin-pane hidden">
+<h3 class="section-subtitle">Editar presentación</h3>
+<textarea class="form-control" id="editIntro" placeholder="Texto de bienvenida"></textarea>
+<button class="primary-btn" onclick="saveIntro()">GUARDAR PRESENTACIÓN</button>
+<h3 class="section-subtitle" style="margin-top:25px">Editar historia</h3>
+<textarea class="form-control" id="editHistory" placeholder="Historia de Cleveland Cavaliers"></textarea>
+<button class="primary-btn" onclick="saveHistory()">GUARDAR HISTORIA</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<strong>CAVS LATAM</strong><br>
+La comunidad de Cleveland Cavaliers en Latinoamérica.<br>
+<a href="https://x.com/cavs_latamm" target="_blank" rel="noopener noreferrer">Seguinos en X</a>
+</footer>
+
+<script>
+const SUPABASE_URL = "https://fowiffhfvazelowwismm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_FGdi7i5OJZVnAz58Ebe96A_xkhfqXkb";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let isAdmin = false;
+let gamesCache = [];
+let playersCache = [];
+let newsCache = [];
+
+function esc(value){
+ return String(value ?? "").replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function formatDate(value){
+ if(!value) return "Fecha por confirmar";
+ const d = new Date(value);
+ return d.toLocaleString("es-CL",{dateStyle:"medium",timeStyle:"short"});
+}
+function message(id,text,type="info"){
+ const el=document.getElementById(id);
+ if(el) el.innerHTML='<div class="status-message status-'+type+'">'+esc(text)+'</div>';
+}
+function showAdminTab(id,button){
+ document.querySelectorAll(".admin-pane").forEach(x=>x.classList.add("hidden"));
+ document.querySelectorAll(".admin-tabs button").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.remove("hidden");
+ if(button) button.classList.add("active");
+}
+
+async function loadPlayers(){
+ const {data,error}=await db.from("players").select("*").order("name");
+ if(error){document.getElementById("rosterGrid").innerHTML="<p>No se pudo cargar la plantilla.</p>";return;}
+ playersCache=data||[];
+ renderPlayers();
+ renderStats();
+ renderAdminPlayers();
+}
+function renderPlayers(){
+ const el=document.getElementById("rosterGrid");
+ if(!playersCache.length){el.innerHTML="<p>La plantilla todavía no tiene jugadores cargados.</p>";return;}
+ el.innerHTML=playersCache.map(p=>{
+  const s=p.stats||{};
+  return `<article class="player-card">
+   <div class="player-top">${p.photo?`<img class="player-photo" src="${esc(p.photo)}" alt="${esc(p.name)}" onerror="this.style.display='none'">`:""}
+   <span class="player-number">#${esc(p.number??"—")}</span>
+   <span class="player-position">${esc(p.position||"")}</span></div>
+   <div class="player-info"><h3>${esc(p.name)}</h3>
+   <div class="height">${esc(p.position||"")}${p.height?" · "+esc(p.height):""}</div>
+   <div class="stat-grid">
+   <div class="stat"><strong>${esc(s.pts??"—")}</strong><small>PTS</small></div>
+   <div class="stat"><strong>${esc(s.reb??"—")}</strong><small>REB</small></div>
+   <div class="stat"><strong>${esc(s.ast??"—")}</strong><small>AST</small></div>
+   </div>
+   <div class="player-extra">ROB: <strong>${esc(s.stl??"—")}</strong> · TAP: <strong>${esc(s.blk??"—")}</strong></div>
+   </div></article>`;
+ }).join("");
+}
+function renderStats(){
+ const el=document.getElementById("statsBody");
+ if(!playersCache.length){el.innerHTML="<tr><td colspan='6'>No hay estadísticas cargadas.</td></tr>";return;}
+ el.innerHTML=playersCache.map(p=>{
+  const s=p.stats||{};
+  return `<tr><td>${esc(p.name)}</td><td>${esc(s.pts??"—")}</td><td>${esc(s.reb??"—")}</td><td>${esc(s.ast??"—")}</td><td>${esc(s.stl??"—")}</td><td>${esc(s.blk??"—")}</td></tr>`;
+ }).join("");
+}
+
+async function loadGames(){
+ const {data,error}=await db.from("games").select("*").order("starts_at",{ascending:true});
+ if(error){console.error(error);return;}
+ gamesCache=data||[];
+ renderTeamGames();
+ renderAdminGames();
+ renderPredictions();
+}
+function renderTeamGames(){
+ const now=Date.now();
+ const upcoming=gamesCache.filter(g=>new Date(g.starts_at).getTime()>=now && !g.actual_winner);
+ const previous=gamesCache.filter(g=>g.actual_winner || new Date(g.starts_at).getTime()<now);
+ const up=document.getElementById("upcomingGames");
+ const prev=document.getElementById("previousGames");
+
+ up.innerHTML=upcoming.length?upcoming.map(g=>`
+ <article class="calendar-card">
+ <h3>${esc(g.home_team)} vs. ${esc(g.away_team)}</h3>
+ <p class="game-meta">${formatDate(g.starts_at)}</p>
+ <p>Próximo partido de Cleveland Cavaliers.</p>
+ </article>`).join(""):"<p>No hay próximos partidos cargados.</p>";
+
+ prev.innerHTML=previous.length?previous.slice().reverse().map(g=>{
+  const score=(g.home_score!==null && g.home_score!==undefined && g.away_score!==null && g.away_score!==undefined);
+  return `<article class="calendar-card">
+  <h3>${esc(g.home_team)} vs. ${esc(g.away_team)}</h3>
+  <p class="game-meta">${formatDate(g.starts_at)}</p>
+  ${score?`<div class="score">${g.home_score} <span>-</span> ${g.away_score}</div>`:"<p>Marcador pendiente de cargar.</p>"}
+  <p>${g.actual_winner?"Ganador: "+esc(g.actual_winner):"Resultado pendiente de confirmar"}</p>
+  ${g.actual_best_player?"<p>Jugador destacado: "+esc(g.actual_best_player)+"</p>":""}
+  </article>`;
+ }).join(""):"<p>Todavía no hay partidos anteriores.</p>";
+}
+
+async function loadTeamSettings(){
+ const {data,error}=await db.from("site_content").select("*").in("content_key",["team_record","game_key"]);
+ if(error){console.error(error);return;}
+ const record=(data||[]).find(x=>x.content_key==="team_record");
+ const key=(data||[]).find(x=>x.content_key==="game_key");
+ const r=record?.content_value||{wins:0,losses:0};
+ const k=key?.content_value||{player:"Por definir",explanation:"El análisis del próximo partido aparecerá aquí."};
+ document.getElementById("recordWins").textContent=r.wins??0;
+ document.getElementById("recordLosses").textContent=r.losses??0;
+ document.getElementById("keyPlayer").textContent=k.player||"Por definir";
+ document.getElementById("keyExplanation").textContent=k.explanation||"El análisis del próximo partido aparecerá aquí.";
+ document.getElementById("editWins").value=r.wins??0;
+ document.getElementById("editLosses").value=r.losses??0;
+ document.getElementById("editKeyPlayer").value=k.player||"";
+ document.getElementById("editKeyExplanation").value=k.explanation||"";
+}
+
+async function saveTeamRecord(){
+ const wins=Number(document.getElementById("editWins").value);
+ const losses=Number(document.getElementById("editLosses").value);
+ if(wins<0||losses<0||!Number.isInteger(wins)||!Number.isInteger(losses)){
+  message("teamAdminMessage","Introduce números enteros válidos.","error");return;
+ }
+ const {error}=await db.from("site_content").upsert({content_key:"team_record",content_value:{wins,losses}});
+ if(error){message("teamAdminMessage","No se pudo guardar el récord: "+error.message,"error");return;}
+ await loadTeamSettings();
+ message("teamAdminMessage","Récord actualizado correctamente.","ok");
+}
+async function saveGameKey(){
+ const player=document.getElementById("editKeyPlayer").value.trim();
+ const explanation=document.getElementById("editKeyExplanation").value.trim();
+ const {error}=await db.from("site_content").upsert({content_key:"game_key",content_value:{player,explanation}});
+ if(error){message("teamAdminMessage","No se pudo guardar: "+error.message,"error");return;}
+ await loadTeamSettings();
+ message("teamAdminMessage","Análisis del partido actualizado.","ok");
+}
+
+async function loadNews(){
+ const {data,error}=await db.from("news").select("*").eq("published",true).order("created_at",{ascending:false});
+ if(error){console.error(error);return;}
+ newsCache=data||[];
+ renderNews();
+}
+function renderNews(){
+ const el=document.getElementById("newsGrid");
+ if(!newsCache.length){el.innerHTML="<p>Todavía no hay noticias publicadas.</p>";return;}
+ el.innerHTML=newsCache.map(n=>`<article class="card">
+ ${n.image_url?`<img src="${esc(n.image_url)}" alt="" style="width:100%;max-height:190px;object-fit:cover;border-radius:7px;margin-bottom:12px">`:""}
+ <h3>${esc(n.title)}</h3><p>${esc(n.summary||"")}</p>
+ <details><summary style="cursor:pointer;color:var(--gold)">LEER NOTICIA</summary><p>${esc(n.body||"").replace(/\n/g,"<br>")}</p></details>
+ <p class="game-meta">${formatDate(n.created_at)}</p></article>`).join("");
+}
+
+async function signup(){
+ const email=document.getElementById("signupEmail").value.trim();
+ const password=document.getElementById("signupPassword").value;
+ if(!email||password.length<6){message("authMessage","Completa el correo y una contraseña de al menos 6 caracteres.","error");return;}
+ const {error}=await db.auth.signUp({email,password});
+ if(error){message("authMessage",error.message,"error");return;}
+ message("authMessage","Registro realizado. Si Supabase solicita confirmar tu correo, revisa tu bandeja de entrada.","ok");
+}
+async function login(){
+ const email=document.getElementById("loginEmail").value.trim();
+ const password=document.getElementById("loginPassword").value;
+ const {data,error}=await db.auth.signInWithPassword({email,password});
+ if(error){message("authMessage",error.message,"error");return;}
+ currentUser=data.user;
+ await refreshAuth();
+}
+async function logout(){await db.auth.signOut();currentUser=null;await refreshAuth();}
+async function refreshAuth(){
+ const {data}=await db.auth.getUser();
+ currentUser=data?.user||null;
+ document.getElementById("authForms").classList.toggle("hidden",!!currentUser);
+ document.getElementById("loggedArea").classList.toggle("hidden",!currentUser);
+ document.getElementById("loggedEmail").textContent=currentUser?.email||"";
+ if(currentUser) renderPredictions();
+ await loadRanking();
+}
+
+async function renderPredictions(){
+ const el=document.getElementById("predictionArea");
+ if(!currentUser){el.innerHTML="<p>Inicia sesión para participar.</p>";return;}
+ const next=gamesCache.filter(g=>!g.actual_winner&&new Date(g.starts_at).getTime()>Date.now())[0];
+ if(!next){el.innerHTML="<p>No hay partidos próximos disponibles para predecir.</p>";return;}
+ const {data:old}=await db.from("predictions").select("*").eq("user_id",currentUser.id).eq("game_id",next.id).maybeSingle();
+ el.innerHTML=`<div class="prediction-card">
+ <h3>${esc(next.home_team)} vs. ${esc(next.away_team)}</h3>
+ <p class="game-meta">${formatDate(next.starts_at)}</p>
+ <label>¿Quién ganará?
+ <select id="pickWinner"><option value="">Seleccionar ganador</option><option value="${esc(next.home_team)}">${esc(next.home_team)}</option><option value="${esc(next.away_team)}">${esc(next.away_team)}</option></select></label>
+ <label>Jugador destacado
+ <input class="form-control" id="pickPlayer" placeholder="Nombre del jugador"></label>
+ <button class="primary-btn" onclick="savePrediction('${esc(next.id)}')">GUARDAR PREDICCIÓN</button>
+ ${old?`<p class="prediction-status">Tu predicción guardada: ${esc(old.predicted_winner||"")} · ${esc(old.predicted_best_player||"")}</p>`:""}
+ </div>`;
+ if(old){document.getElementById("pickWinner").value=old.predicted_winner||"";document.getElementById("pickPlayer").value=old.predicted_best_player||"";}
+}
+async function savePrediction(gameId){
+ const winner=document.getElementById("pickWinner").value;
+ const player=document.getElementById("pickPlayer").value.trim();
+ if(!winner||!player){message("predictionMessage","Selecciona un ganador y escribe un jugador destacado.","error");return;}
+ const {error}=await db.from("predictions").upsert({
+  user_id:currentUser.id,game_id:gameId,predicted_winner:winner,predicted_best_player:player
+ },{onConflict:"user_id,game_id"});
+ if(error){message("predictionMessage","No se pudo guardar. Comprueba que la tabla predictions tenga las columnas necesarias.","error");return;}
+ message("predictionMessage","¡Tu predicción fue guardada!","ok");
+}
+async function loadRanking(){
+ const el=document.getElementById("rankingBody");
+ const {data,error}=await db.from("profiles").select("*").order("points",{ascending:false}).limit(50);
+ if(error){el.innerHTML="<tr><td colspan='3'>No se pudo cargar el ranking.</td></tr>";return;}
+ if(!data?.length){el.innerHTML="<tr><td colspan='3'>Todavía no hay participantes en el ranking.</td></tr>";return;}
+ el.innerHTML=data.map((p,i)=>`<tr><td class="rank-number">${i+1}</td><td>${esc(p.username||p.email||"Usuario")}</td><td>${esc(p.points??0)}</td></tr>`).join("");
+}
+
+async function adminLogin(){
+ const email=document.getElementById("adminEmail").value.trim();
+ const password=document.getElementById("adminPassword").value;
+ const {data,error}=await db.auth.signInWithPassword({email,password});
+ if(error){message("adminMessage",error.message,"error");return;}
+ currentUser=data.user;
+ const check=await db.rpc("is_admin");
+ if(check.error||!check.data){
+  await db.auth.signOut();currentUser=null;
+  message("adminMessage","Esta cuenta no tiene permisos de administrador.","error");return;
+ }
+ isAdmin=true;
+ document.getElementById("adminLogin").classList.add("hidden");
+ document.getElementById("adminPanel").classList.remove("hidden");
+ document.getElementById("adminNav").classList.remove("hidden");
+ await loadAdminData();
+}
+async function adminLogout(){
+ await db.auth.signOut();
+ isAdmin=false;currentUser=null;
+ document.getElementById("adminLogin").classList.remove("hidden");
+ document.getElementById("adminPanel").classList.add("hidden");
+ document.getElementById("adminNav").classList.add("hidden");
+}
+async function loadAdminData(){
+ await Promise.all([loadAdminNews(),loadAdminGames(),loadAdminPlayers(),loadTeamSettings()]);
+ const {data}=await db.from("site_content").select("*").in("content_key",["home_intro","history"]);
+ const intro=(data||[]).find(x=>x.content_key==="home_intro");
+ const history=(data||[]).find(x=>x.content_key==="history");
+ document.getElementById("editIntro").value=intro?.content_value?.text||document.getElementById("homeIntro").textContent;
+ document.getElementById("editHistory").value=history?.content_value?.text||document.getElementById("historyContent").textContent;
+}
+async function publishNews(){
+ const title=document.getElementById("newsTitle").value.trim();
+ const image_url=document.getElementById("newsImage").value.trim();
+ const summary=document.getElementById("newsSummary").value.trim();
+ const body=document.getElementById("newsBody").value.trim();
+ if(!title||!body){alert("Escribe al menos un título y el contenido de la noticia.");return;}
+ const {error}=await db.from("news").insert({title,image_url,summary,body,published:true});
+ if(error){alert("Error al publicar: "+error.message);return;}
+ ["newsTitle","newsImage","newsSummary","newsBody"].forEach(id=>document.getElementById(id).value="");
+ await loadNews();await loadAdminNews();alert("Noticia publicada correctamente.");
+}
+async function loadAdminNews(){
+ const {data,error}=await db.from("news").select("*").order("created_at",{ascending:false});
+ if(error)return;
+ document.getElementById("adminNewsList").innerHTML=(data||[]).map(n=>`
+ <div class="admin-item"><div><strong>${esc(n.title)}</strong><br><small>${n.published?"Publicada":"Oculta"}</small></div>
+ <div><button class="secondary-btn" onclick="toggleNews(${n.id},${!n.published})">${n.published?"Ocultar":"Publicar"}</button>
+ <button class="secondary-btn" onclick="deleteNews(${n.id})">Eliminar</button></div></div>`).join("")||"<p>No hay noticias.</p>";
+}
+async function toggleNews(id,published){
+ const {error}=await db.from("news").update({published}).eq("id",id);
+ if(error){alert(error.message);return;}await loadAdminNews();await loadNews();
+}
+async function deleteNews(id){
+ if(!confirm("¿Eliminar esta noticia?"))return;
+ const {error}=await db.from("news").delete().eq("id",id);
+ if(error){alert(error.message);return;}await loadAdminNews();await loadNews();
+}
+
+async function addGame(){
+ const home_team=document.getElementById("gameHome").value.trim();
+ const away_team=document.getElementById("gameAway").value.trim();
+ const starts_at=document.getElementById("gameDate").value;
+ if(!home_team||!away_team||!starts_at){alert("Completa los equipos y la fecha.");return;}
+ const {error}=await db.from("games").insert({home_team,away_team,starts_at:new Date(starts_at).toISOString()});
+ if(error){alert("No se pudo agregar: "+error.message);return;}
+ ["gameHome","gameAway","gameDate"].forEach(id=>document.getElementById(id).value="");
+ await loadGames();alert("Partido agregado.");
+}
+async function loadAdminGames(){renderAdminGames();}
+function renderAdminGames(){
+ const el=document.getElementById("adminGamesList");
+ if(!el)return;
+ el.innerHTML=gamesCache.map(g=>`
+ <div class="admin-item" style="display:block">
+ <strong>${esc(g.home_team)} vs. ${esc(g.away_team)}</strong>
+ <p class="game-meta">${formatDate(g.starts_at)}</p>
+ <div class="admin-form">
+ <input class="form-control" id="hs-${g.id}" type="number" placeholder="Puntos ${esc(g.home_team)}" value="${g.home_score??""}">
+ <input class="form-control" id="as-${g.id}" type="number" placeholder="Puntos ${esc(g.away_team)}" value="${g.away_score??""}">
+ <input class="form-control" id="winner-${g.id}" placeholder="Ganador" value="${esc(g.actual_winner||"")}">
+ <input class="form-control" id="best-${g.id}" placeholder="Jugador destacado" value="${esc(g.actual_best_player||"")}">
+ </div>
+ <button class="primary-btn" onclick="updateGameResult('${esc(g.id)}')">GUARDAR RESULTADO</button>
+ <button class="secondary-btn" onclick="deleteGame('${esc(g.id)}')">ELIMINAR PARTIDO</button>
+ </div>`).join("")||"<p>No hay partidos cargados.</p>";
+}
+async function updateGameResult(id){
+ const homeScore=document.getElementById("hs-"+id).value;
+ const awayScore=document.getElementById("as-"+id).value;
+ const winner=document.getElementById("winner-"+id).value.trim();
+ const best=document.getElementById("best-"+id).value.trim();
+ const update={
+  home_score:homeScore===""?null:Number(homeScore),
+  away_score:awayScore===""?null:Number(awayScore),
+  actual_winner:winner||null,
+  actual_best_player:best||null
+ };
+ const {error}=await db.from("games").update(update).eq("id",id);
+ if(error){alert("No se pudo actualizar. Comprueba que hayas agregado las columnas home_score y away_score en Supabase. Detalle: "+error.message);return;}
+ await loadGames();alert("Resultado actualizado.");
+}
+async function deleteGame(id){
+ if(!confirm("¿Eliminar este partido?"))return;
+ const {error}=await db.from("games").delete().eq("id",id);
+ if(error){alert(error.message);return;}await loadGames();
+}
+
+async function addPlayer(){
+ const name=document.getElementById("playerName").value.trim();
+ if(!name){alert("Escribe el nombre del jugador.");return;}
+ const stats={
+  pts:Number(document.getElementById("playerPoints").value)||0,
+  reb:Number(document.getElementById("playerRebounds").value)||0,
+  ast:Number(document.getElementById("playerAssists").value)||0,
+  stl:Number(document.getElementById("playerSteals").value)||0,
+  blk:Number(document.getElementById("playerBlocks").value)||0
+ };
+ const {error}=await db.from("players").insert({
+  name,number:Number(document.getElementById("playerNumber").value)||null,
+  position:document.getElementById("playerPosition").value,
+  height:document.getElementById("playerHeight").value,
+  photo:document.getElementById("playerPhoto").value,stats
+ });
+ if(error){alert(error.message);return;}
+ document.querySelectorAll("#admin-players input").forEach(x=>x.value="");
+ await loadPlayers();alert("Jugador agregado.");
+}
+async function loadAdminPlayers(){renderAdminPlayers();}
+function renderAdminPlayers(){
+ const el=document.getElementById("adminPlayersList");
+ if(!el)return;
+ el.innerHTML=playersCache.map(p=>`<div class="admin-item"><strong>${esc(p.name)} #${esc(p.number??"—")}</strong><button class="secondary-btn" onclick="deletePlayer(${p.id})">Eliminar</button></div>`).join("")||"<p>No hay jugadores cargados.</p>";
+}
+async function deletePlayer(id){
+ if(!confirm("¿Eliminar este jugador?"))return;
+ const {error}=await db.from("players").delete().eq("id",id);
+ if(error){alert(error.message);return;}await loadPlayers();
+}
+
+async function saveIntro(){
+ const text=document.getElementById("editIntro").value.trim();
+ const {error}=await db.from("site_content").upsert({content_key:"home_intro",content_value:{text}});
+ if(error){alert(error.message);return;}
+ document.getElementById("homeIntro").textContent=text;alert("Presentación actualizada.");
+}
+async function saveHistory(){
+ const text=document.getElementById("editHistory").value.trim();
+ const {error}=await db.from("site_content").upsert({content_key:"history",content_value:{text}});
+ if(error){alert(error.message);return;}
+ document.getElementById("historyContent").textContent=text;alert("Historia actualizada.");
+}
+
+function changeLanguage(){
+ const lang=document.getElementById("language").value;
+ const translations={
+  es:["INICIO","PLANTILLA","ESTADÍSTICAS","RÉCORD Y CALENDARIO","LA CLAVE","RESULTADOS","PREDICCIONES","RANKING","HISTORIA","NOTICIAS","ADMIN"],
+  pt:["INÍCIO","ELENCO","ESTATÍSTICAS","RECORD E CALENDÁRIO","A CHAVE","RESULTADOS","PALPITES","RANKING","HISTÓRIA","NOTÍCIAS","ADMIN"],
+  en:["HOME","ROSTER","STATISTICS","RECORD & SCHEDULE","GAME KEY","RESULTS","PREDICTIONS","RANKING","HISTORY","NEWS","ADMIN"]
+ };
+ const links=document.querySelectorAll("nav a");
+ translations[lang].forEach((t,i)=>{if(links[i])links[i].textContent=t;});
+}
+
+async function init(){
+ await loadPlayers();
+ await loadGames();
+ await loadNews();
+ await loadTeamSettings();
+ await loadRanking();
+ const {data}=await db.auth.getUser();
+ currentUser=data?.user||null;
+ if(currentUser) await refreshAuth();
+ db.auth.onAuthStateChange((_event,session)=>{
+  currentUser=session?.user||null;
+  refreshAuth();
+ });
+}
+init();
+</script>
+</body>
+  </html>
